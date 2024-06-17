@@ -2,7 +2,9 @@
 body {
     background-color: #000;
     color: #0f0;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 30px;
     margin: 0;
     padding: 0;
 }
