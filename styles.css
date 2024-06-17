@@ -38,12 +38,23 @@ main {
 }
 
 ul {
-    list-style-type: none;
+    list-style: none; /* Remove default bullets */
     padding: 0;
 }
 
 ul li {
+    position: relative;
     margin: 10px 0;
+    padding-left: 20px; /* Space for custom bullet */
+}
+
+ul li::before {
+    content: "•"; /* Unicode for bullet */
+    color: #fff; /* White color for bullet */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em; /* Adjust size as needed */
 }
 
 ul li a {
