@@ -1,4 +1,4 @@
-css
+/* Global Styles */
 body {
     background-color: #000;
     color: #0f0;
@@ -7,11 +7,28 @@ body {
     padding: 0;
 }
 
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
 header h1 {
     font-size: 3em;
     margin: 0;
+    color: #0f0;
 }
 
+header h1 a {
+    color: #0f0;
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
 main {
     padding: 20px;
     max-width: 800px;
