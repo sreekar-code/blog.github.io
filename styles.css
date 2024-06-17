@@ -50,7 +50,7 @@ ul li {
 
 ul li::before {
     content: "•"; /* Unicode for bullet */
-    color: #5F75D5; /* White color for bullet */
+    color: #C6C7E8; /* White color for bullet */
     position: absolute;
     left: 0;
     top: 0;
@@ -58,7 +58,7 @@ ul li::before {
 }
 
 ul li a {
-    color: #00f;
+    color: #5F75D5;
     text-decoration: none;
 }
 
