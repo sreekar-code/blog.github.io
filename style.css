@@ -1,71 +1,37 @@
-* {
-    box-sizing: border-box;
-}
-
+css
 body {
-    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    background: #f1f1f1;
 }
 
-header {
-    background-color: #ffffff;
-    color: #000000;
-    text-align: center;
-    padding: 30px;
-}
-
-nav {
-    background-color: #242424;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-    margin-right: 10px;
-    display: inline-block;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 20px;
+header h1 {
+    font-size: 3em;
+    margin: 0;
 }
 
 main {
-    flex: 2;
-}
-
-aside {
-    flex: 1;
-    background-color: #c9c9c9;
     padding: 20px;
-    margin-left: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-footer {
-    background-color: #242424;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-@media screen and (max-width: 800px) {
-    .container {
-        flex-direction: column;
-    }
+ul li {
+    margin: 10px 0;
+}
 
-    aside {
-        margin-left: 0;
-        margin-top: 20px;
-    }
+ul li a {
+    color: #00f;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
 }
