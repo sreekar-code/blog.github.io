@@ -115,7 +115,7 @@ body {
   margin: 20px auto;
   padding: 0 10px;
   word-wrap: break-word;
-  color: #363636;
+  color: #000000;
   color: var(--text-main);
   background: #fff;
   background: var(--background-body);
