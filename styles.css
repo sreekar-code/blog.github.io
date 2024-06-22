@@ -4,7 +4,7 @@ html {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
-  background-color: #000000;
+  background-color: rgba(var(21,21,21),var(1));
   color: #cccccc;
 }
 
