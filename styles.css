@@ -4,5 +4,7 @@ html {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+  background-color: #000000;
+  color: #cccccc;
 }
 
