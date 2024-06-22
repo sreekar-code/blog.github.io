@@ -1,22 +1,10 @@
 body {
-   width: 720px;
-  font-main: 'Josefin Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-font-secondary: 'Nunito', Verdana, sans-serif;
-    font-scale: 1.2em;
-    background-color: #120c0e;
-    heading-color: #d9d8dc;
-    text-color: #d9d8dc;
-    link-color: #eb99a1;
-    visited-color: #e26f7a;
-    code-background-color: #40363a;
-    code-color: #d9d8dc;
-    blockquote-color: #d9d8dc;
-}
-/* background-color: #000000;
+   background-color: #000000;
     font-family: 'Nunito', Verdana, sans-serif;
     color: #CCCCCC;
     margin-left: 22%;
     margin-right: 22%;
     font-size: 20px;
     line-height: 30px;
-    padding: 5px; */
+    padding: 5px;
+}
