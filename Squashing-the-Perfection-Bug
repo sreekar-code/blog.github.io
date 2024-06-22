@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sreekarscribbles</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<main>
+    <h1>Sreekar Scribbles</h1>
+    <h2>Squashing the Perfection Bug</h2>
+<section class="content">
+<p>I love my blog! I really do! I want to write every day. But I don't. Why? Because of the Perfection Bug!</p>
+
+<p>"You need to share a unique thought"</p>
+
+<p>"Your idea should be worth penning"</p>
+
+<p>"You need to write in great detail"</p>
+
+<p>Buzz, buzzz, buzzzz....the perfection bug keeps buzzing in my ear.</p>
+
+<p>But today, I decided to squash that bug!</p>
+
+<p>I don't need unique thoughts. I don't need amazing ideas. I don't need to explain things in detail.<p/>
+
+<p>All I need is a thought (which can be ordinary) and a bunch of words to share it. That's it! That's all I need to write on my blog.</p>
+
+<p>So, see you again tomorrow with an ordinary thought and a bunch of words!</p>
+</section>
+</main>
+</html>
