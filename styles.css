@@ -1,4 +1,6 @@
 body {
     background-color: #000000;
-    font-family: serif, Georgia;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 30px;
 }
