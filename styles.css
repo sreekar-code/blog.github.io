@@ -32,5 +32,6 @@ html {
   img {
     margin: 0;
     transform: scale(0.8);
+        float: left;
   }
 }
