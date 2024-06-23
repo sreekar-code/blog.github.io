@@ -9,11 +9,4 @@ html {
 a {color: black;}
 a:hover {color: blue;}
 a:visited {color: black;}
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: auto;
-  transform: scale(0.5); /* Scale the image to 50% of its original size */
-}
 
