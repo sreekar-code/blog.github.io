@@ -14,6 +14,7 @@ img {
   height: auto;
   display: block;
   margin: auto;
+  transform: scale(0.5); /* Scale the image to 50% of its original size */
 }
 @media (max-width: 600px) {
   img {
