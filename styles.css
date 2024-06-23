@@ -31,6 +31,6 @@ html {
 @media (min-width: 769px) {
   img {
     margin: 0;
-    scaled-down: 50%;
+    transform: scale(0.5);
   }
 }
