@@ -19,6 +19,7 @@ html {
    html {
     font-size: 1em;
   }
+  .blogtitle {text-align: center;}
   img {
     margin-top: 8px;
     margin-bottom: 0;
