@@ -9,3 +9,4 @@ html {
 a {color: black;}
 a:hover {color: blue}
 a:active {color: purple}
+a:visited {color: purple}
