@@ -19,7 +19,7 @@ html {
    html {
     font-size: 1em;
   }
-  .blogtitle {text-align: center;}
+  .blogtitle {text-align: center; font-size: 2em;}
   img {
     margin-top: 8px;
     margin-bottom: 0;
