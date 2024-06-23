@@ -16,20 +16,4 @@ img {
   margin: auto;
   transform: scale(0.5); /* Scale the image to 50% of its original size */
 }
-@media (max-width: 600px) {
-  img {
-    max-width: 90%;
-  }
-}
 
-@media (min-width: 601px) and (max-width: 1200px) {
-  img {
-    max-width: 80%;
-  }
-}
-
-@media (min-width: 1201px) {
-  img {
-    max-width: 70%;
-  }
-}
