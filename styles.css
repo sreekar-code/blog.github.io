@@ -31,7 +31,5 @@ html {
 @media (min-width: 769px) {
   img {
     margin: 0;
-    transform: scale(0.8);
-        float: left;
   }
 }
