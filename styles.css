@@ -6,3 +6,11 @@ html {
   font-size: 1.25em;
 }
 .blogtitle {font-size: 1.75em; font-weight: bold;}
+img {
+     max-width: 100%;
+     display: block;
+     margin: 0 auto;
+     max-height: 75vh;
+     border-radius: 12px;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
