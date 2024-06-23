@@ -7,7 +7,7 @@ html {
 }
 .blogtitle {font-size: 1.75em; font-weight: bold;}
 img  {
-  width: 30%;
-  height: 30%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
 }
