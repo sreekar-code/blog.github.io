@@ -31,5 +31,6 @@ html {
 @media (min-width: 769px) {
   img {
     margin: 0;
+    max-width: 80%;
   }
 }
