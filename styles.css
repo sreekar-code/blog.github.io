@@ -6,7 +6,7 @@ html {
   font-size: 1.25em;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
- img {
+ img, .me {
    max-width: 100%;
    display: block;
    margin: 0 auto;
@@ -19,7 +19,7 @@ html {
    html {
     font-size: 1em;
   }
-  img {
+  .me {
     margin-top: 8px;
     margin-bottom: 0;
     margin-left: auto;
@@ -29,7 +29,7 @@ html {
 
 /* desktop */
 @media (min-width: 769px) {
-  img {
+  .me {
     margin: 0;
     max-width: 70%;
   }
