@@ -10,6 +10,6 @@ a {color: black;}
 a:hover {color: blue;}
 a:visited {color: black;}
 img {
-  max-width: 100%;
+  width: auto;
   height: auto;
 }
