@@ -15,3 +15,20 @@ img {
   display: block;
   margin: auto;
 }
+@media (max-width: 600px) {
+  img {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  img {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1201px) {
+  img {
+    max-width: 70%;
+  }
+}
