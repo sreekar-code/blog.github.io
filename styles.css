@@ -16,6 +16,7 @@ html {
  }
 /* Center align image on mobile */
 @media (max-width: 768px) {
+  font-size: 1em;
   img {
     margin-top: 8px;
     margin-bottom: 0;
