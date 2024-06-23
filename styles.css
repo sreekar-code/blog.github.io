@@ -10,6 +10,6 @@ a {color: black;}
 a:hover {color: blue;}
 a:visited {color: black;}
 img {
-  width: auto;
-  height: auto;
+max-width: 70ch;
+max-height: 70ch;
 }
