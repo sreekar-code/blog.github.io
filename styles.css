@@ -9,4 +9,4 @@ html {
 a {color: black;}
 a:hover {color: blue;}
 a:visited {color: black;}
-img { max-width: 70ch; max-height: 70ch; padding: 5px; margin-left: auto; margin-right: auto;}
+img {max-width: 70ch; max-height: 70ch; margin: auto;}
