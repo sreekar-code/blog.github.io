@@ -14,12 +14,11 @@ html {
    border-radius: 12px;
    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
  }
-/* Center align image on mobile */
+/* mobile */
 @media (max-width: 768px) {
    html {
     font-size: 1em;
   }
-  .blogtitle {text-align: center; font-size: 2em;}
   img {
     margin-top: 8px;
     margin-bottom: 0;
@@ -28,9 +27,10 @@ html {
   }
 }
 
-/* Left align image on desktop */
+/* desktop */
 @media (min-width: 769px) {
   img {
     margin: 0;
+    scaled-down: 20%;
   }
 }
