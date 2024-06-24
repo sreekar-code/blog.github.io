@@ -36,6 +36,6 @@ img, .me {
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    max-width: 100%;
+    max-width: 70ch;
   }
 }
