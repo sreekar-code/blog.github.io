@@ -3,8 +3,19 @@ html {
   padding: 2em 1em;
   margin: auto;
   line-height: 1.75;
-  font-size: 1.25em;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 a {color: black;}
 hr {margin-bottom: 10px;}
+/* mobile */
+@media (max-width: 768px) {
+   html {
+    font-size: 1em;
+}
+
+/* desktop */
+@media (min-width: 769px) {
+  html{
+    font-size: 1.25em;
+  }
+}
