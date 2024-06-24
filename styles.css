@@ -6,6 +6,7 @@ html {
   font-size: 1.25em;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
+a {color: black;}
  img, .me {
    max-width: 100%;
    display: block;
