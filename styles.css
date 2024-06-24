@@ -13,3 +13,21 @@ hr {margin-bottom: 10px;}
    html {
     font-size: 1em;
 }
+blockquote {
+  position: relative;
+  padding-left: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #ccc;
+  border-left: 5px solid #ccc;
+}
+
+blockquote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #ccc;
+}
