@@ -15,7 +15,7 @@ hr {margin-bottom: 10px;}
 
 /* desktop */
 @media (min-width: 769px) {
-  html{
+  html {
     font-size: 1.25em;
   }
 }
