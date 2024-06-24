@@ -7,7 +7,7 @@ html {
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 a {color: black;}
-hr {padding-bottom: 10px;}
+hr {margin-bottom: 10px;}
 img, .me {
    max-width: 100%;
    display: block;
