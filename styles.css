@@ -15,6 +15,14 @@ blockquote {
   font-style: italic;
   border-left: 5px solid #6F6D6D;
 }
+ img {
+   max-width: 100%;
+   display: block;
+   margin: 0 auto;
+   max-height: 75vh;
+   border-radius: 12px;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+ }
 /* mobile */
 @media (max-width: 768px) {
    html {
