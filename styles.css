@@ -30,7 +30,7 @@ html {
 /* desktop */
 @media (min-width: 769px) {
   .me {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
