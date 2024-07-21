@@ -27,5 +27,6 @@ blockquote {
 @media (max-width: 768px) {
    html {
     font-size: 1em;
+     footer {text-align: center;}
 }
 
