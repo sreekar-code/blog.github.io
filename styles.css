@@ -12,13 +12,9 @@ footer {
     width: 100%;
 }
 
-.footer-content {
-    display: inline-block;
-}
-
 footer a {
-    display: block;
-    margin: 5px 0;
+    display: inline-block;
+    margin: 0 10px;
 }
 a {color: black;}
 hr {margin-bottom: 10px;}
