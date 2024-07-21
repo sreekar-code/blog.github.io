@@ -7,7 +7,7 @@ html {
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
-footer {text-align: center;}
+footer a {text-align: center;}
 a {color: black;}
 hr {margin-bottom: 10px;}
 blockquote {
