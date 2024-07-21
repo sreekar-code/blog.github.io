@@ -9,7 +9,12 @@ html {
 .date {font-style: italic;}
 a {color: black;}
 hr {margin-bottom: 10px;}
-
+blockquote {
+  padding-left: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  border-left: 5px solid #6F6D6D;
+}
  img {
    max-width: 100%;
    display: block;
