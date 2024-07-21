@@ -27,6 +27,13 @@ blockquote {
 @media (max-width: 768px) {
    html {
     font-size: 1em;
-     footer a {text-align: center;}
-}
+.site-footer {
+        text-align: center;
+    }
+    .site-footer a {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+   }
 
