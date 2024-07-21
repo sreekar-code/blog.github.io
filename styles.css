@@ -4,10 +4,11 @@ html {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+  background-color: black;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
-a {color: blue;}
+a {color: black;}
 hr {margin-bottom: 10px;}
 blockquote {
   padding-left: 20px;
