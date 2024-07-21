@@ -6,7 +6,7 @@ html {
   font-size: 1.25em;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
-.date {font-style: italic;}
+.date {font-style: bold;}
 a {color: black;}
 hr {margin-bottom: 10px;}
 blockquote {
