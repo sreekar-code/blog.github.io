@@ -7,8 +7,18 @@ html {
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
-footer {text-align: center;}
-footer a {display: inline-block; margin: 5px 0;}
+footer {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer a {
+  display: inline-block;
+  margin: 5px 0;
+}
 a {color: black;}
 hr {margin-bottom: 10px;}
 blockquote {
