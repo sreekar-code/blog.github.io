@@ -4,6 +4,7 @@ html {
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+  background-color: #f0f0f0;
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
