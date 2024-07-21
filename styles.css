@@ -26,12 +26,6 @@ blockquote {
 /* mobile */
 @media (max-width: 768px) {
    html {font-size: 1em;}
-   .site-footer {
-    text-align: center !important;
-  }
-  .site-footer a {
-    display: block !important;
-    margin: 5px 0 !important;
-  }
+   .site-footer {text-align: center;}
    }
 
