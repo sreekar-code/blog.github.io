@@ -7,6 +7,7 @@ html {
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
+.subscribe {text-align: left;}
 a {color: black;}
 hr {margin-bottom: 10px;}
 blockquote {
