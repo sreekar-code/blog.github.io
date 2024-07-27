@@ -39,23 +39,6 @@ blockquote {
   transition: background-color 0.3s;
 }
 
-/*like button*/
-.like-button:hover {
-  background-color: #e0e0e0;
-}
-
-.like-button.liked {
-  background-color: #ffcccb;
-}
-
-.like-icon {
-  color: #ff4136;
-  margin-right: 5px;
-}
-
-.like-count {
-  font-weight: bold;
-}
 
 /* mobile */
 @media (max-width: 768px) {
