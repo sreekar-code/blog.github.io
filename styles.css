@@ -23,6 +23,40 @@ blockquote {
    border-radius: 12px;
    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
  }
+
+.like-button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.like-button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/*like button*/
+.like-button:hover {
+  background-color: #e0e0e0;
+}
+
+.like-button.liked {
+  background-color: #ffcccb;
+}
+
+.like-icon {
+  color: #ff4136;
+  margin-right: 5px;
+}
+
+.like-count {
+  font-weight: bold;
+}
+
 /* mobile */
 @media (max-width: 768px) {
    html {font-size: 1em;}
