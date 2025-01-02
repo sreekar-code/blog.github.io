@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Subtle chess pattern background */
+    background-image: 
+        linear-gradient(45deg, #e6e6e6 25%, transparent 25%),
+        linear-gradient(-45deg, #e6e6e6 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e6e6e6 75%),
+        linear-gradient(-45deg, transparent 75%, #e6e6e6 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    min-height: 100vh;
+    font-family: 'Georgia', serif;
+}
+
+h1 {
+    color: #4a4a4a;
+    text-align: center;
+    font-size: 2.5em;
+    margin: 20px 10px 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h1::before, h1::after {
+    content: "♔";
+    margin: 0 15px;
+    color: #8b6b4a;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 300px 300px;
+    gap: 70px;
+    justify-content: center;
+    width: 95%;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+/* Chess piece decorative corners */
+.gallery::before, .gallery::after {
+    content: "♟";
+    position: absolute;
+    font-size: 24px;
+    color: #8b6b4a;
+    opacity: 0.3;
+}
+
+.gallery::before {
+    top: 10px;
+    left: 10px;
+}
+
+.gallery::after {
+    bottom: 10px;
+    right: 10px;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    border: 4px solid #8b6b4a;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.date {
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.95em;
+    font-style: italic;
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 10px;
+    }
+    
+    .gallery {
+        grid-template-columns: 300px;
+        gap: 25px;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        margin: 15px 10px 25px;
+    }
+}
