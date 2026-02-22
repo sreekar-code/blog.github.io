@@ -45,12 +45,10 @@ blockquote {
     html { font-size: 1em; }
     .site-footer { text-align: center; }
 
-    /* Fixed-size dots so they stay readable; grid scrolls horizontally */
+    /* Slightly smaller dots on mobile, still scrolls */
     .dot-grid {
-        grid-template-columns: repeat(52, 11px);
-        grid-template-rows: repeat(7, 11px);
-        overflow-x: auto;
-        padding-bottom: 6px;
+        grid-template-columns: repeat(52, 9px);
+        grid-template-rows: repeat(7, 9px);
         -webkit-overflow-scrolling: touch;
     }
 
@@ -96,22 +94,26 @@ blockquote {
     100% { opacity: 0; }
 }
 
-/* Contribution dot grid — fills full container width, last 52 weeks */
+/* Contribution dot grid */
 .dot-grid {
     display: grid;
-    grid-template-columns: repeat(52, 1fr);
-    grid-template-rows: repeat(7, 13px);
+    grid-template-columns: repeat(52, 10px);
+    grid-template-rows: repeat(7, 10px);
     grid-auto-flow: column;
     gap: 3px;
-    margin-bottom: 36px;
+    overflow-x: auto;
+    margin-bottom: 40px;
+    padding-bottom: 2px;
 }
 .dot {
+    width: 10px;
+    height: 10px;
     border-radius: 2px;
-    background: #eee;
+    background: #f0f0f0;
 }
-.dot-filled { background: #333; }
+.dot-filled { background: #555; }
 .dot-future { background: transparent; }
-.dot-today  { outline: 1.5px solid #aaa; outline-offset: 1px; }
+.dot-today  { outline: 1.5px solid #bbb; outline-offset: 1px; }
 
 /* Log section */
 .log-section {
