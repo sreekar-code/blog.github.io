@@ -29,8 +29,10 @@
                 <input type="date" id="postDate">
                 <button id="addPostBtn">add</button>
             </div>
+            <p id="syncStatus" class="sync-status"></p>
             <ul class="log-list" id="postDatesList"></ul>
             <button id="resetBestBtn" class="reset-best">reset best</button>
+            <button id="changeTokenBtn" class="reset-best">change token</button>
         </details>
 
     </main>
@@ -59,10 +61,18 @@
             }
         }
 
+        function setSyncStatus(msg, isError) {
+            const el = document.getElementById('syncStatus');
+            if (!el) return;
+            el.textContent = msg;
+            el.style.color = isError ? '#c77' : '#aaa';
+        }
+
         async function syncToGitHub() {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) return;
             dates = [...new Set(dates)].sort();
+            setSyncStatus('syncing…', false);
             try {
                 const getRes = await fetch(GITHUB_API, {
                     headers: { Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' }
@@ -83,8 +93,10 @@
                     })
                 });
                 if (!putRes.ok) throw new Error('put failed');
+                setSyncStatus('synced ✓', false);
+                setTimeout(() => setSyncStatus('', false), 3000);
             } catch {
-                alert('Sync failed. Check your GitHub token.');
+                setSyncStatus('sync failed — check token', true);
             }
         }
 
@@ -227,6 +239,20 @@
             if (confirm('Reset your best streak to 0?')) {
                 saveBest(0);
                 update();
+            }
+        });
+
+        document.getElementById('changeTokenBtn').addEventListener('click', () => {
+            const token = prompt('Enter new GitHub token:');
+            if (token === null) return;
+            if (token.trim()) {
+                localStorage.setItem(TOKEN_KEY, token.trim());
+                setSyncStatus('token saved', false);
+                setTimeout(() => setSyncStatus('', false), 2000);
+            } else {
+                localStorage.removeItem(TOKEN_KEY);
+                setSyncStatus('token cleared', false);
+                setTimeout(() => setSyncStatus('', false), 2000);
             }
         });
 

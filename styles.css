@@ -184,4 +184,10 @@ blockquote {
 .reset-best:hover {
     color: #aaa;
 }
+.sync-status {
+    font-size: 0.75em;
+    color: #aaa;
+    margin: 4px 0 0;
+    min-height: 1em;
+}
 
