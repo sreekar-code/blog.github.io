@@ -18,7 +18,6 @@
             <strong id="currentStreak">0</strong> day flow
             <span class="streak-sep">·</span>
             best <strong id="bestStreak">0</strong>
-            <span id="newRecord"></span>
         </p>
 
         <div class="dot-grid" id="grid"></div>
@@ -31,7 +30,6 @@
             </div>
             <p id="syncStatus" class="sync-status"></p>
             <ul class="log-list" id="postDatesList"></ul>
-            <button id="resetBestBtn" class="reset-best">reset best</button>
             <button id="changeTokenBtn" class="reset-best">change token</button>
         </details>
 
@@ -44,7 +42,6 @@
     </footer>
 
     <script>
-        const BEST_KEY   = 'blogBestStreak';
         const TOKEN_KEY  = 'ghToken';
         const DATES_KEY  = 'blogPostDates';
         const GITHUB_API = 'https://api.github.com/repos/sreekar-code/blog.github.io/contents/dates.json';
@@ -106,8 +103,17 @@
             }
         }
 
-        function getBest() { return parseInt(localStorage.getItem(BEST_KEY) || '0'); }
-        function saveBest(n) { localStorage.setItem(BEST_KEY, String(n)); }
+        function calcBestStreak(arr) {
+            if (!arr.length) return 0;
+            const sorted = [...new Set(arr)].sort();
+            let best = 1, run = 1;
+            for (let i = 1; i < sorted.length; i++) {
+                const diff = (new Date(sorted[i]) - new Date(sorted[i - 1])) / 86400000;
+                if (diff === 1) { run++; if (run > best) best = run; }
+                else run = 1;
+            }
+            return best;
+        }
 
         function toYMD(d) {
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -159,7 +165,7 @@
                 grid.appendChild(dot);
                 cur.setDate(cur.getDate() + 1);
             }
-            grid.scrollLeft = grid.scrollWidth;
+            requestAnimationFrame(() => { grid.scrollLeft = grid.scrollWidth; });
         }
 
         function renderList() {
@@ -181,25 +187,11 @@
             });
         }
 
-        function flashBest() {
-            const el = document.getElementById('newRecord');
-            el.textContent = ' new best!';
-            el.className = '';
-            void el.offsetWidth;
-            el.className = 'flash-record';
-        }
-
         function update() {
-            const streak   = calcStreak(dates);
-            const prevBest = getBest();
+            const streak = calcStreak(dates);
+            const best   = Math.max(calcBestStreak(dates), streak);
             document.getElementById('currentStreak').textContent = streak;
-            if (streak > prevBest) {
-                saveBest(streak);
-                document.getElementById('bestStreak').textContent = streak;
-                if (prevBest > 0) flashBest();
-            } else {
-                document.getElementById('bestStreak').textContent = Math.max(prevBest, streak);
-            }
+            document.getElementById('bestStreak').textContent = best;
             buildGrid();
             renderList();
         }
@@ -240,13 +232,6 @@
             });
         });
         // ────────────────────────────────────────────────────────────────────
-
-        document.getElementById('resetBestBtn').addEventListener('click', () => {
-            if (confirm('Reset your best streak to 0?')) {
-                saveBest(0);
-                update();
-            }
-        });
 
         document.getElementById('changeTokenBtn').addEventListener('click', () => {
             const token = prompt('Enter new GitHub token:');

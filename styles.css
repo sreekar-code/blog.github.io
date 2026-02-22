@@ -103,7 +103,7 @@ blockquote {
     gap: 3px;
     overflow-x: auto;
     margin-bottom: 40px;
-    padding: 3px;
+    padding: 8px;
 }
 .dot {
     width: 10px;
