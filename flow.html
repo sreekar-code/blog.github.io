@@ -177,7 +177,7 @@
         });
 
         // ── Admin password (SHA-256 hash — plaintext never stored in source) ──
-        const ADMIN_HASH = '521d38a523af26ec7d22943f47556d11b8e60e7427dd3f23ea1ffbf2c420654c';
+        const ADMIN_HASH = '3b4b8072bd0a4606ffd2854d373d607aedb78a8406c929783c0b1db5cec80c25';
 
         async function hashInput(str) {
             const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
