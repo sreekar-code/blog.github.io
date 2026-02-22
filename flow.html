@@ -46,19 +46,23 @@
     <script>
         const BEST_KEY   = 'blogBestStreak';
         const TOKEN_KEY  = 'ghToken';
-        const GITHUB_RAW = 'https://raw.githubusercontent.com/sreekar-code/blog.github.io/main/dates.json';
+        const DATES_KEY  = 'blogPostDates';
         const GITHUB_API = 'https://api.github.com/repos/sreekar-code/blog.github.io/contents/dates.json';
 
         let dates = []; // in-memory source of truth
 
         async function loadDates() {
+            // Read from the Pi's local dates.json (updated by git pull)
             try {
-                const res = await fetch(GITHUB_RAW + '?_=' + Date.now());
+                const res = await fetch('./dates.json?_=' + Date.now());
                 if (!res.ok) throw new Error();
                 dates = await res.json();
             } catch {
                 dates = [];
             }
+            // Merge any locally-saved dates (fallback when GitHub sync hasn't run yet)
+            const local = JSON.parse(localStorage.getItem(DATES_KEY) || '[]');
+            dates = [...new Set([...dates, ...local])].sort();
         }
 
         function setSyncStatus(msg, isError) {
@@ -69,9 +73,11 @@
         }
 
         async function syncToGitHub() {
+            dates = [...new Set(dates)].sort();
+            // Always persist to localStorage so dates survive a page reload
+            localStorage.setItem(DATES_KEY, JSON.stringify(dates));
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) return;
-            dates = [...new Set(dates)].sort();
             setSyncStatus('syncing…', false);
             try {
                 const getRes = await fetch(GITHUB_API, {
