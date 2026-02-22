@@ -42,43 +42,73 @@
     </footer>
 
     <script>
-        const DATES_KEY = 'blogPostDates';
-        const BEST_KEY  = 'blogBestStreak';
+        const BEST_KEY   = 'blogBestStreak';
+        const TOKEN_KEY  = 'ghToken';
+        const GITHUB_RAW = 'https://raw.githubusercontent.com/sreekar-code/blog.github.io/main/dates.json';
+        const GITHUB_API = 'https://api.github.com/repos/sreekar-code/blog.github.io/contents/dates.json';
 
-        function getDates() {
-            return JSON.parse(localStorage.getItem(DATES_KEY) || '[]');
+        let dates = []; // in-memory source of truth
+
+        async function loadDates() {
+            try {
+                const res = await fetch(GITHUB_RAW + '?_=' + Date.now());
+                if (!res.ok) throw new Error();
+                dates = await res.json();
+            } catch {
+                dates = [];
+            }
         }
-        function saveDates(dates) {
-            localStorage.setItem(DATES_KEY, JSON.stringify([...new Set(dates)].sort()));
+
+        async function syncToGitHub() {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) return;
+            dates = [...new Set(dates)].sort();
+            try {
+                const getRes = await fetch(GITHUB_API, {
+                    headers: { Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' }
+                });
+                if (!getRes.ok) throw new Error('get failed');
+                const { sha } = await getRes.json();
+                const putRes = await fetch(GITHUB_API, {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'X-GitHub-Api-Version': '2022-11-28'
+                    },
+                    body: JSON.stringify({
+                        message: 'log: update post dates',
+                        content: btoa(JSON.stringify(dates)),
+                        sha
+                    })
+                });
+                if (!putRes.ok) throw new Error('put failed');
+            } catch {
+                alert('Sync failed. Check your GitHub token.');
+            }
         }
-        function getBest() {
-            return parseInt(localStorage.getItem(BEST_KEY) || '0');
-        }
-        function saveBest(n) {
-            localStorage.setItem(BEST_KEY, String(n));
-        }
+
+        function getBest() { return parseInt(localStorage.getItem(BEST_KEY) || '0'); }
+        function saveBest(n) { localStorage.setItem(BEST_KEY, String(n)); }
 
         function toYMD(d) {
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
-        // Convert a UTC millisecond timestamp to a local YYYY-MM-DD string.
         const DAY_MS = 86400000;
         function msToYMD(ms) {
             const d = new Date(ms);
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
-        // Local midnight in ms — avoids date-object mutation bugs.
         function localMidnight() {
             const n = new Date();
             return new Date(n.getFullYear(), n.getMonth(), n.getDate()).getTime();
         }
 
-        function calcStreak(dates) {
-            if (!dates.length) return 0;
-            const set = new Set(dates);
+        function calcStreak(arr) {
+            if (!arr.length) return 0;
+            const set = new Set(arr);
             const todayMs = localMidnight();
-            // Grace period: streak is still alive if yesterday was posted.
             let startMs = todayMs;
             if (!set.has(msToYMD(startMs))) {
                 startMs -= DAY_MS;
@@ -89,22 +119,16 @@
             return count;
         }
 
-        // Always shows last 52 full weeks (364 days).
-        // Ends on the Saturday of the current week so the grid is always full.
         function buildGrid() {
-            const set = new Set(getDates());
+            const set = new Set(dates);
             const today = new Date(); today.setHours(0,0,0,0);
             const todayStr = toYMD(today);
-
-            // end = this Saturday, start = 363 days before (always a Sunday → 52×7 = 364 cells)
             const end = new Date(today);
             end.setDate(today.getDate() + (6 - today.getDay()));
             const start = new Date(end);
             start.setDate(end.getDate() - 363);
-
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
-
             const cur = new Date(start);
             while (cur <= end) {
                 const ymd = toYMD(cur);
@@ -120,7 +144,7 @@
             grid.scrollLeft = grid.scrollWidth;
         }
 
-        function renderList(dates) {
+        function renderList() {
             const list = document.getElementById('postDatesList');
             list.innerHTML = '';
             [...dates].sort().reverse().forEach(date => {
@@ -128,9 +152,10 @@
                 const btn = document.createElement('button');
                 btn.className = 'log-remove';
                 btn.textContent = '×';
-                btn.addEventListener('click', () => {
-                    saveDates(getDates().filter(d => d !== date));
+                btn.addEventListener('click', async () => {
+                    dates = dates.filter(d => d !== date);
                     update();
+                    await syncToGitHub();
                 });
                 li.appendChild(document.createTextNode(date));
                 li.appendChild(btn);
@@ -147,12 +172,9 @@
         }
 
         function update() {
-            const dates    = getDates();
             const streak   = calcStreak(dates);
             const prevBest = getBest();
-
             document.getElementById('currentStreak').textContent = streak;
-
             if (streak > prevBest) {
                 saveBest(streak);
                 document.getElementById('bestStreak').textContent = streak;
@@ -160,17 +182,16 @@
             } else {
                 document.getElementById('bestStreak').textContent = Math.max(prevBest, streak);
             }
-
             buildGrid();
-            renderList(dates);
+            renderList();
         }
 
-        document.getElementById('addPostBtn').addEventListener('click', () => {
+        document.getElementById('addPostBtn').addEventListener('click', async () => {
             const val = document.getElementById('postDate').value;
             if (!val) return;
-            const dates = getDates();
-            if (!dates.includes(val)) { dates.push(val); saveDates(dates); }
+            if (!dates.includes(val)) dates.push(val);
             update();
+            await syncToGitHub();
         });
 
         document.getElementById('postDate').addEventListener('keydown', e => {
@@ -191,7 +212,14 @@
             e.preventDefault();
             const input = prompt('password');
             if (input === null) return;
-            hashInput(input).then(hash => { if (hash === ADMIN_HASH) panel.open = true; });
+            hashInput(input).then(hash => {
+                if (hash !== ADMIN_HASH) return;
+                if (!localStorage.getItem(TOKEN_KEY)) {
+                    const token = prompt('GitHub token (stored on this device only):');
+                    if (token) localStorage.setItem(TOKEN_KEY, token.trim());
+                }
+                panel.open = true;
+            });
         });
         // ────────────────────────────────────────────────────────────────────
 
@@ -203,7 +231,7 @@
         });
 
         document.getElementById('postDate').value = toYMD(new Date());
-        update();
+        loadDates().then(() => update());
     </script>
 </body>
 </html>
