@@ -42,7 +42,143 @@ blockquote {
 
 /* mobile */
 @media (max-width: 768px) {
-   html {font-size: 1em;}
-   .site-footer {text-align: center;}
-   }
+    html { font-size: 1em; }
+    .site-footer { text-align: center; }
+
+    /* Fixed-size dots so they stay readable; grid scrolls horizontally */
+    .dot-grid {
+        grid-template-columns: repeat(52, 11px);
+        grid-template-rows: repeat(7, 11px);
+        aspect-ratio: unset;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Let the date input stretch, button stays compact */
+    .log-form {
+        flex-wrap: wrap;
+    }
+    .log-form input {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+/* Tracker */
+.tracker {
+    margin-top: 30px;
+}
+
+/* Streak — one compact line, matches body text size */
+.streak-line {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+.streak-line strong {
+    color: #333;
+    font-weight: 600;
+}
+.streak-sep {
+    margin: 0 6px;
+    color: #ddd;
+}
+
+/* New-best flash */
+.flash-record {
+    color: #aaa;
+    font-style: italic;
+    animation: fadeinout 2.5s ease forwards;
+}
+@keyframes fadeinout {
+    0%   { opacity: 0; }
+    15%  { opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Contribution dot grid — fills full container width, last 52 weeks */
+.dot-grid {
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    aspect-ratio: 52 / 7;
+    gap: 3px;
+    margin-bottom: 36px;
+}
+.dot {
+    border-radius: 2px;
+    background: #eee;
+}
+.dot-filled { background: #333; }
+.dot-future { background: transparent; }
+.dot-today  { outline: 1.5px solid #aaa; outline-offset: 1px; }
+
+/* Log section */
+.log-section {
+    margin-top: 4px;
+}
+.log-section > summary {
+    cursor: pointer;
+    color: #ccc;
+    font-size: 0.8em;
+    list-style: none;
+    user-select: none;
+}
+.log-section > summary::-webkit-details-marker { display: none; }
+.log-form {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 6px;
+}
+.log-form input {
+    padding: 5px 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    font-size: 0.8em;
+    color: #555;
+}
+.log-form button {
+    padding: 5px 12px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+.log-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.log-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    font-size: 0.75em;
+    color: #ccc;
+}
+.log-remove {
+    background: none;
+    border: none;
+    color: #ddd;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.reset-best {
+    background: none;
+    border: none;
+    color: #ddd;
+    font-size: 0.75em;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 14px;
+    display: block;
+}
+.reset-best:hover {
+    color: #aaa;
+}
 
