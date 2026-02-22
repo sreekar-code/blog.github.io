@@ -117,6 +117,7 @@
                 grid.appendChild(dot);
                 cur.setDate(cur.getDate() + 1);
             }
+            grid.scrollLeft = grid.scrollWidth;
         }
 
         function renderList(dates) {
