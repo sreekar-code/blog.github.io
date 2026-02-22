@@ -62,18 +62,31 @@
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
+        // Convert a UTC millisecond timestamp to a local YYYY-MM-DD string.
+        const DAY_MS = 86400000;
+        function msToYMD(ms) {
+            const d = new Date(ms);
+            return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        }
+        // Local midnight in ms — avoids date-object mutation bugs.
+        function localMidnight() {
+            const n = new Date();
+            return new Date(n.getFullYear(), n.getMonth(), n.getDate()).getTime();
+        }
+
         function calcStreak(dates) {
             if (!dates.length) return 0;
             const set = new Set(dates);
-            const today = new Date(); today.setHours(0,0,0,0);
-            let cur = new Date(today);
-            if (!set.has(toYMD(cur))) {
-                cur.setDate(cur.getDate() - 1);
-                if (!set.has(toYMD(cur))) return 0;
+            const todayMs = localMidnight();
+            // Grace period: streak is still alive if yesterday was posted.
+            let startMs = todayMs;
+            if (!set.has(msToYMD(startMs))) {
+                startMs -= DAY_MS;
+                if (!set.has(msToYMD(startMs))) return 0;
             }
-            let n = 0;
-            while (set.has(toYMD(cur))) { n++; cur.setDate(cur.getDate() - 1); }
-            return n;
+            let count = 0;
+            for (let t = startMs; set.has(msToYMD(t)); t -= DAY_MS) count++;
+            return count;
         }
 
         // Always shows last 52 full weeks (364 days).

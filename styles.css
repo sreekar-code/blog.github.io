@@ -113,7 +113,7 @@ blockquote {
 }
 .dot-filled { background: #555; }
 .dot-future { background: transparent; }
-.dot-today  { outline: 1.5px solid #bbb; outline-offset: 1px; }
+.dot-today  { box-shadow: inset 0 0 0 1.5px #999; }
 
 /* Log section */
 .log-section {
