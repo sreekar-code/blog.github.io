@@ -1,19 +1,67 @@
+:root {
+    --bg: #ffffff;
+    --fg: #000000;
+    --link: #000000;
+    --blockquote-border: #6F6D6D;
+    --like-btn-bg: #f0f0f0;
+    --dot-empty: #f0f0f0;
+    --dot-filled: #555;
+    --dot-today: #999;
+    --streak-muted: #aaa;
+    --streak-strong: #333;
+    --streak-sep: #ddd;
+    --log-summary: #ccc;
+    --log-input-border: #eee;
+    --log-input-color: #555;
+    --log-btn-bg: #333;
+    --log-btn-color: #fff;
+    --log-list-color: #ccc;
+    --log-remove: #ddd;
+    --reset-best: #ddd;
+    --sync-status: #aaa;
+}
+
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --fg: #d4d4d4;
+    --link: #d4d4d4;
+    --blockquote-border: #666;
+    --like-btn-bg: #2e2e2e;
+    --dot-empty: #2e2e2e;
+    --dot-filled: #aaa;
+    --dot-today: #777;
+    --streak-muted: #666;
+    --streak-strong: #b0b0b0;
+    --streak-sep: #333;
+    --log-summary: #555;
+    --log-input-border: #333;
+    --log-input-color: #888;
+    --log-btn-bg: #444;
+    --log-btn-color: #e0e0e0;
+    --log-list-color: #555;
+    --log-remove: #444;
+    --reset-best: #444;
+    --sync-status: #555;
+}
+
 html {
   max-width: 70ch;
   padding: 2em 1em;
   margin: auto;
   line-height: 1.75;
   font-size: 1.25em;
+  background-color: var(--bg);
+  color: var(--fg);
 }
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
-a {color: black;}
+a {color: var(--link);}
 hr {margin-bottom: 10px;}
 blockquote {
   padding-left: 20px;
   margin: 20px 0;
   font-style: italic;
-  border-left: 5px solid #6F6D6D;
+  border-left: 5px solid var(--blockquote-border);
 }
  img {
    max-width: 100%;
@@ -30,7 +78,7 @@ blockquote {
 }
 
 .like-button {
-  background-color: #f0f0f0;
+  background-color: var(--like-btn-bg);
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
@@ -39,6 +87,18 @@ blockquote {
   transition: background-color 0.3s;
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--fg);
+    font-size: 1em;
+    vertical-align: baseline;
+    line-height: inherit;
+}
+.theme-toggle::before { content: '☀'; }
+[data-theme="dark"] .theme-toggle::before { content: '☽'; }
 
 /* mobile */
 @media (max-width: 768px) {
@@ -69,16 +129,16 @@ blockquote {
 
 /* Streak — one compact line, matches body text size */
 .streak-line {
-    color: #aaa;
+    color: var(--streak-muted);
     margin-bottom: 20px;
 }
 .streak-line strong {
-    color: #333;
+    color: var(--streak-strong);
     font-weight: 600;
 }
 .streak-sep {
     margin: 0 6px;
-    color: #ddd;
+    color: var(--streak-sep);
 }
 
 /* New-best flash */
@@ -109,11 +169,11 @@ blockquote {
     width: 10px;
     height: 10px;
     border-radius: 2px;
-    background: #f0f0f0;
+    background: var(--dot-empty);
 }
-.dot-filled { background: #555; }
+.dot-filled { background: var(--dot-filled); }
 .dot-future { background: transparent; }
-.dot-today  { box-shadow: inset 0 0 0 1.5px #999; }
+.dot-today  { box-shadow: inset 0 0 0 1.5px var(--dot-today); }
 
 /* Log section */
 .log-section {
@@ -122,7 +182,7 @@ blockquote {
 .log-section > summary {
     display: block; /* removes ::marker in Firefox + Chrome */
     cursor: pointer;
-    color: #ccc;
+    color: var(--log-summary);
     font-size: 0.8em;
     list-style: none;
     user-select: none;
@@ -136,15 +196,16 @@ blockquote {
 }
 .log-form input {
     padding: 5px 8px;
-    border: 1px solid #eee;
+    border: 1px solid var(--log-input-border);
     border-radius: 4px;
     font-size: 0.8em;
-    color: #555;
+    color: var(--log-input-color);
+    background: var(--bg);
 }
 .log-form button {
     padding: 5px 12px;
-    background: #333;
-    color: #fff;
+    background: var(--log-btn-bg);
+    color: var(--log-btn-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -160,13 +221,13 @@ blockquote {
     justify-content: space-between;
     padding: 3px 0;
     font-size: 0.75em;
-    color: #ccc;
+    color: var(--log-list-color);
     list-style: none;
 }
 .log-remove {
     background: none;
     border: none;
-    color: #ddd;
+    color: var(--log-remove);
     cursor: pointer;
     padding: 0;
     line-height: 1;
@@ -174,7 +235,7 @@ blockquote {
 .reset-best {
     background: none;
     border: none;
-    color: #ddd;
+    color: var(--reset-best);
     font-size: 0.75em;
     cursor: pointer;
     padding: 0;
@@ -182,12 +243,11 @@ blockquote {
     display: block;
 }
 .reset-best:hover {
-    color: #aaa;
+    color: var(--streak-muted);
 }
 .sync-status {
     font-size: 0.75em;
-    color: #aaa;
+    color: var(--sync-status);
     margin: 4px 0 0;
     min-height: 1em;
 }
-
