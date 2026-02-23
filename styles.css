@@ -7,9 +7,6 @@
     --dot-empty: #f0f0f0;
     --dot-filled: #555;
     --dot-today: #999;
-    --streak-muted: #aaa;
-    --streak-strong: #333;
-    --streak-sep: #ddd;
     --log-summary: #ccc;
     --log-input-border: #eee;
     --log-input-color: #555;
@@ -30,9 +27,6 @@
     --dot-empty: #2e2e2e;
     --dot-filled: #aaa;
     --dot-today: #777;
-    --streak-muted: #666;
-    --streak-strong: #b0b0b0;
-    --streak-sep: #333;
     --log-summary: #555;
     --log-input-border: #333;
     --log-input-color: #888;
@@ -126,33 +120,6 @@ blockquote {
     margin-top: 30px;
 }
 
-/* Streak — one compact line, matches body text size */
-.streak-line {
-    color: var(--streak-muted);
-    margin-bottom: 20px;
-}
-.streak-line strong {
-    color: var(--streak-strong);
-    font-weight: 600;
-}
-.streak-sep {
-    margin: 0 6px;
-    color: var(--streak-sep);
-}
-
-/* New-best flash */
-.flash-record {
-    color: #aaa;
-    font-style: italic;
-    animation: fadeinout 2.5s ease forwards;
-}
-@keyframes fadeinout {
-    0%   { opacity: 0; }
-    15%  { opacity: 1; }
-    75%  { opacity: 1; }
-    100% { opacity: 0; }
-}
-
 /* Contribution dot grid */
 .dot-grid {
     display: grid;
@@ -242,7 +209,7 @@ blockquote {
     display: block;
 }
 .reset-best:hover {
-    color: var(--streak-muted);
+    color: var(--log-summary);
 }
 .sync-status {
     font-size: 0.75em;
