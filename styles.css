@@ -87,6 +87,11 @@ blockquote {
   transition: background-color 0.3s;
 }
 
+.site-nav {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+}
 .theme-toggle {
     background: none;
     border: none;
@@ -95,6 +100,7 @@ blockquote {
     color: var(--fg);
     font-size: 1em;
     line-height: inherit;
+    margin-left: auto;
 }
 .theme-toggle::before { content: '☀'; }
 [data-theme="dark"] .theme-toggle::before { content: '☽'; }
