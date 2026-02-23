@@ -87,6 +87,10 @@ blockquote {
   transition: background-color 0.3s;
 }
 
+p:has(.theme-toggle) {
+    display: flex;
+    align-items: baseline;
+}
 .theme-toggle {
     background: none;
     border: none;
@@ -94,8 +98,8 @@ blockquote {
     padding: 0;
     color: var(--fg);
     font-size: 1em;
-    vertical-align: baseline;
     line-height: inherit;
+    margin-left: auto;
 }
 .theme-toggle::before { content: '☀'; }
 [data-theme="dark"] .theme-toggle::before { content: '☽'; }
