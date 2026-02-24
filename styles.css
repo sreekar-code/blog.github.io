@@ -279,7 +279,8 @@ blockquote {
 /* Desktop: calendar left, stats right, log a post below */
 @media (min-width: 600px) {
     .tracker {
-        margin-top: 72px;
+        margin-top: 40px;
+        margin-bottom: 60px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
