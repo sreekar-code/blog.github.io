@@ -124,7 +124,8 @@ blockquote {
 
 /* Tracker */
 .tracker {
-    margin-top: 30px;
+    margin-top: 48px;
+    margin-bottom: 48px;
 }
 
 /* Post timeline */
@@ -319,11 +320,11 @@ blockquote {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 40px;
+        gap: 64px;
     }
     .flow-calendar {
         order: 1;
-        flex: 0 0 300px;
+        flex: 0 0 380px;
         margin-bottom: 0;
     }
     .flow-stats {
