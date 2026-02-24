@@ -125,9 +125,7 @@ blockquote {
 /* Tracker */
 .tracker {
     margin-top: 30px;
-    max-width: 380px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 340px;
 }
 
 /* Post timeline */
@@ -292,7 +290,7 @@ blockquote {
     justify-content: center;
     border-radius: 50%;
     font-size: 0.7em;
-    background: var(--cal-cell);
+    background: none;
     color: var(--cal-cell-text);
 }
 .cal-blank {
@@ -304,16 +302,12 @@ blockquote {
     font-weight: bold;
 }
 .cal-today {
-    background: none;
     border: 1.5px solid var(--cal-today-border);
     color: var(--fg);
 }
 .cal-this-week {
-    background: none;
-    border: 1.5px solid var(--cal-week-border);
     color: var(--cal-cell-text);
 }
 .cal-future {
-    background: none;
     color: var(--cal-future-text);
 }
