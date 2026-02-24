@@ -37,6 +37,7 @@ html {
 .blogtitle {font-size: 2em; font-weight: bold;}
 .date {font-style: italic;}
 a {color: var(--link);}
+section a { text-decoration-color: #ffe066; }
 hr {margin-bottom: 10px;}
 blockquote {
   padding-left: 20px;
