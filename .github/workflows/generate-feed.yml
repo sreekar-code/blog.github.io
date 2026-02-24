@@ -1,0 +1,23 @@
+name: Generate RSS Feed
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate feed.xml
+        run: python3 generate-feed.py
+
+      - name: Commit and push feed.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add feed.xml
+          git diff --cached --quiet || git commit -m "Update RSS feed"
+          git push
