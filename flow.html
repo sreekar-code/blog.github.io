@@ -11,6 +11,11 @@
             0%   { background-position: 200% center; }
             100% { background-position: -200% center; }
         }
+        .flow-desc {
+            font-size: 0.8em;
+            color: var(--log-summary);
+            margin-bottom: 24px;
+        }
         .stat-value {
             background: linear-gradient(
                 90deg,
@@ -32,6 +37,8 @@
 
     <main class="tracker">
 
+        <p class="flow-desc">I write one post a week. This tracks it.</p>
+
         <div class="flow-stats">
             <div>
                 <div class="stat-label">Flow</div>
@@ -51,7 +58,7 @@
             <div class="cal-grid" id="calGrid"></div>
         </div>
 
-        <details class="log-section">
+        <details class="log-section" id="logSection" style="display:none">
             <summary>Log post</summary>
             <div class="log-form">
                 <input type="date" id="postDate">
@@ -314,6 +321,19 @@
 
         document.getElementById('postDate').value = toYMD(new Date());
         loadDates().then(() => update());
+
+        // Secret key combo: press 'l' three times quickly to reveal log section
+        let keyBuffer = '', keyTimer;
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'l') { keyBuffer = ''; return; }
+            keyBuffer += 'l';
+            clearTimeout(keyTimer);
+            keyTimer = setTimeout(() => { keyBuffer = ''; }, 600);
+            if (keyBuffer === 'lll') {
+                document.getElementById('logSection').style.display = '';
+                keyBuffer = '';
+            }
+        });
     </script>
 </body>
 </html>
