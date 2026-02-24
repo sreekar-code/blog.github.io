@@ -313,14 +313,21 @@ blockquote {
     color: var(--cal-future-text);
 }
 
-/* Desktop: stats beside calendar */
+/* Desktop: calendar left, stats right, log a post below */
 @media (min-width: 600px) {
     .tracker {
         display: flex;
+        flex-wrap: wrap;
         align-items: flex-start;
         gap: 48px;
     }
+    .flow-calendar {
+        order: 1;
+        flex: 1;
+        margin-bottom: 0;
+    }
     .flow-stats {
+        order: 2;
         flex: 0 0 auto;
         margin-bottom: 0;
         padding-top: 8px;
@@ -328,7 +335,8 @@ blockquote {
     .stat-value {
         font-size: 2.2em;
     }
-    .flow-calendar {
-        flex: 1;
+    .log-section {
+        order: 3;
+        flex-basis: 100%;
     }
 }
