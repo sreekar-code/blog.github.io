@@ -125,7 +125,6 @@ blockquote {
 /* Tracker */
 .tracker {
     margin-top: 30px;
-    max-width: 340px;
 }
 
 /* Post timeline */
@@ -235,18 +234,17 @@ blockquote {
 
 /* Flow — weekly calendar */
 .flow-stats {
-    display: flex;
-    gap: 40px;
     margin-bottom: 28px;
 }
 .stat-label {
     font-size: 0.7em;
     color: var(--log-summary);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 .stat-value {
-    font-size: 1.3em;
+    font-size: 1.6em;
     font-weight: bold;
+    line-height: 1.2;
 }
 .flow-calendar {
     margin-bottom: 28px;
@@ -258,7 +256,7 @@ blockquote {
     margin-bottom: 14px;
 }
 .cal-title {
-    font-size: 0.95em;
+    font-size: 0.85em;
     font-weight: bold;
 }
 .cal-nav-btn {
@@ -266,7 +264,7 @@ blockquote {
     border: none;
     cursor: pointer;
     color: var(--fg);
-    font-size: 1em;
+    font-size: 0.9em;
     padding: 0 4px;
     opacity: 0.4;
 }
@@ -275,21 +273,24 @@ blockquote {
 .cal-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 4px;
     text-align: center;
 }
 .cal-days-header {
-    margin-bottom: 6px;
-    font-size: 0.7em;
+    margin-bottom: 4px;
+    font-size: 0.65em;
     color: var(--log-summary);
 }
 .cal-cell {
-    aspect-ratio: 1;
+    width: 28px;
+    height: 28px;
+    justify-self: center;
+    align-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 0.7em;
+    font-size: 0.65em;
     background: none;
     color: var(--cal-cell-text);
 }
@@ -310,4 +311,24 @@ blockquote {
 }
 .cal-future {
     color: var(--cal-future-text);
+}
+
+/* Desktop: stats beside calendar */
+@media (min-width: 600px) {
+    .tracker {
+        display: flex;
+        align-items: flex-start;
+        gap: 48px;
+    }
+    .flow-stats {
+        flex: 0 0 auto;
+        margin-bottom: 0;
+        padding-top: 8px;
+    }
+    .stat-value {
+        font-size: 2.2em;
+    }
+    .flow-calendar {
+        flex: 1;
+    }
 }
