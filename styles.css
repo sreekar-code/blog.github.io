@@ -1,31 +1,4 @@
 :root {
-    --bg: #ffffff;
-    --fg: #000000;
-    --link: #000000;
-    --blockquote-border: #6F6D6D;
-    --like-btn-bg: #f0f0f0;
-    --dot-empty: #f0f0f0;
-    --dot-filled: #555;
-    --dot-today: #999;
-    --log-summary: #ccc;
-    --log-input-border: #eee;
-    --log-input-color: #555;
-    --log-btn-bg: #333;
-    --log-btn-color: #fff;
-    --log-list-color: #ccc;
-    --log-remove: #ddd;
-    --reset-best: #ddd;
-    --sync-status: #aaa;
-    --cal-cell: #f0f0f0;
-    --cal-cell-text: #555;
-    --cal-posted: #222;
-    --cal-posted-text: #fff;
-    --cal-today-border: #999;
-    --cal-week-border: #ddd;
-    --cal-future-text: #ccc;
-}
-
-[data-theme="dark"] {
     --bg: #1a1a1a;
     --fg: #d4d4d4;
     --link: #d4d4d4;
@@ -95,17 +68,6 @@ blockquote {
   transition: background-color 0.3s;
 }
 
-.theme-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: var(--fg);
-    font-size: 1em;
-    line-height: inherit;
-}
-.theme-toggle::before { content: '☀'; }
-[data-theme="dark"] .theme-toggle::before { content: '☽'; }
 
 /* mobile */
 @media (max-width: 768px) {
