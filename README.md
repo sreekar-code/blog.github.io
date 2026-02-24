@@ -14,7 +14,7 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 |------|-------------|
 | Home | Introduction |
 | Blog | All published posts |
-| Flow | Weekly writing streak tracker |
+| Flow | Weekly writing streak tracker — calendar + streak count |
 | Cooking | Upcoming post titles |
 
 ## Publishing a Post
@@ -28,3 +28,10 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 ## RSS
 
 Feed available at `/feed.xml`, auto-generated from `blog.html` on every push via GitHub Actions.
+
+## Flow Tracker
+
+`flow.html` tracks weekly writing streaks using a monthly calendar view.
+- Post dates stored in `dates.json`, synced via GitHub API
+- Admin panel hidden behind a secret key combo (`l` pressed three times)
+- Desktop: two-column layout — calendar left, streak stat right

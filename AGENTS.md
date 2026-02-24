@@ -60,8 +60,8 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
   ```html
   <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
   ```
-- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=4">`
-- Blog posts in `blog/` use `../styles.css?v=4`
+- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=10">`
+- Blog posts in `blog/` use `../styles.css?v=10`
 
 ### CSS
 
@@ -70,13 +70,18 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 - Mobile-first with desktop overrides via `@media (min-width: 600px)`
 - CSS custom properties used throughout for theming
 - No CSS frameworks (Tailwind, Bootstrap, etc.)
-- When updating `styles.css`, bump the version in all HTML files:
-  ```bash
-  python3 -c "
+- When updating `styles.css`, bump the version in all HTML files using this safe script (read then write separately — never combine into a one-liner):
+  ```python
   import glob, re
   files = glob.glob('**/*.html', recursive=True) + glob.glob('*.html')
-  [open(p,'w').write(re.sub(r'styles\.css\?v=\d+', 'styles.css?vN', open(p).read())) for p in set(files)]
-  "
+  files = list(set(files))
+  for p in files:
+      with open(p, 'r') as f:
+          content = f.read()
+      new_content = re.sub(r'styles\.css\?v=\d+', 'styles.css?vN', content)
+      if new_content != content:
+          with open(p, 'w') as f:
+              f.write(new_content)
   ```
 
 ### JavaScript
@@ -85,6 +90,14 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 - Use `const` and `let` (avoid `var`)
 - Function declarations preferred over arrow functions for top-level functions
 - Use `localStorage` for client-side persistence
+
+### Flow Page Notes
+
+- `flow.html` has a two-column desktop layout: calendar left, streak stat right
+- The description `<p class="flow-desc">` sits **outside** `<main class="tracker">` so it doesn't interfere with the flex layout
+- The admin "Log post" panel is hidden via `style="display:none"` and revealed by pressing `l` three times quickly
+- `dates.json` stores post dates; synced to GitHub via the GitHub API using a stored token
+- Calendar cells are 28px on mobile, 34px on desktop
 
 ### Blog Post Template
 
@@ -95,7 +108,7 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Title</title>
-    <link rel="stylesheet" href="../styles.css?v=4">
+    <link rel="stylesheet" href="../styles.css?v=10">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
 </head>
 <body>
