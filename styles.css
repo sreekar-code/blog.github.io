@@ -16,6 +16,13 @@
     --log-remove: #ddd;
     --reset-best: #ddd;
     --sync-status: #aaa;
+    --cal-cell: #f0f0f0;
+    --cal-cell-text: #555;
+    --cal-posted: #222;
+    --cal-posted-text: #fff;
+    --cal-today-border: #999;
+    --cal-week-border: #ddd;
+    --cal-future-text: #ccc;
 }
 
 [data-theme="dark"] {
@@ -36,6 +43,13 @@
     --log-remove: #444;
     --reset-best: #444;
     --sync-status: #555;
+    --cal-cell: #2a2a2a;
+    --cal-cell-text: #888;
+    --cal-posted: #c8c8c8;
+    --cal-posted-text: #1a1a1a;
+    --cal-today-border: #666;
+    --cal-week-border: #3a3a3a;
+    --cal-future-text: #3a3a3a;
 }
 
 html {
@@ -98,13 +112,6 @@ blockquote {
     html { font-size: 1em; }
     .site-footer { text-align: center; }
 
-    /* Slightly smaller dots on mobile, still scrolls */
-    .dot-grid {
-        grid-template-columns: repeat(52, 9px);
-        grid-template-rows: repeat(7, 9px);
-        -webkit-overflow-scrolling: touch;
-    }
-
     /* Let the date input stretch, button stays compact */
     .log-form {
         flex-wrap: wrap;
@@ -120,26 +127,33 @@ blockquote {
     margin-top: 30px;
 }
 
-/* Contribution dot grid */
+/* Post timeline */
 .dot-grid {
-    display: grid;
-    grid-template-columns: repeat(52, 10px);
-    grid-template-rows: repeat(7, 10px);
-    grid-auto-flow: column;
-    gap: 3px;
-    overflow-x: auto;
-    margin-bottom: 40px;
-    padding: 8px;
+    position: relative;
+    height: 20px;
+    margin: 20px 8px 40px;
 }
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
+.dot-grid::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
     background: var(--dot-empty);
 }
+.dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--dot-empty);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
 .dot-filled { background: var(--dot-filled); }
-.dot-future { background: transparent; }
-.dot-today  { box-shadow: inset 0 0 0 1.5px var(--dot-today); }
+.dot-today  { box-shadow: 0 0 0 1.5px var(--dot-today); background: var(--bg); }
 
 /* Log section */
 .log-section {
@@ -216,4 +230,87 @@ blockquote {
     color: var(--sync-status);
     margin: 4px 0 0;
     min-height: 1em;
+}
+
+/* Flow — weekly calendar */
+.flow-stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 28px;
+}
+.stat-label {
+    font-size: 0.7em;
+    color: var(--log-summary);
+    margin-bottom: 2px;
+}
+.stat-value {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.flow-calendar {
+    margin-bottom: 28px;
+}
+.cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.cal-title {
+    font-size: 0.95em;
+    font-weight: bold;
+}
+.cal-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--fg);
+    font-size: 1em;
+    padding: 0 4px;
+    opacity: 0.4;
+}
+.cal-nav-btn:hover { opacity: 1; }
+.cal-days-header,
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+.cal-days-header {
+    margin-bottom: 6px;
+    font-size: 0.7em;
+    color: var(--log-summary);
+}
+.cal-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.7em;
+    background: var(--cal-cell);
+    color: var(--cal-cell-text);
+}
+.cal-blank {
+    background: none;
+}
+.cal-posted {
+    background: var(--cal-posted);
+    color: var(--cal-posted-text);
+    font-weight: bold;
+}
+.cal-today {
+    background: none;
+    border: 1.5px solid var(--cal-today-border);
+    color: var(--fg);
+}
+.cal-this-week {
+    background: none;
+    border: 1.5px solid var(--cal-week-border);
+    color: var(--cal-cell-text);
+}
+.cal-future {
+    background: none;
+    color: var(--cal-future-text);
 }
