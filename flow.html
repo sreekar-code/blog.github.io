@@ -6,6 +6,25 @@
     <title>Flow — Sreekar Scribbles</title>
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
     <link rel="stylesheet" href="styles.css?v=12">
+    <style>
+        @keyframes flowShimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+        .stat-value {
+            background: linear-gradient(
+                90deg,
+                var(--fg) 20%,
+                var(--dot-today) 50%,
+                var(--fg) 80%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: flowShimmer 3s linear infinite;
+        }
+    </style>
     <script>
         (function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
         function toggleTheme(){var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);}
