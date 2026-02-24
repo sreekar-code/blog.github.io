@@ -318,22 +318,21 @@ blockquote {
     .tracker {
         display: flex;
         flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 48px;
+        align-items: center;
+        gap: 40px;
     }
     .flow-calendar {
         order: 1;
-        flex: 1;
+        flex: 0 0 300px;
         margin-bottom: 0;
     }
     .flow-stats {
         order: 2;
-        flex: 0 0 auto;
+        flex: 1;
         margin-bottom: 0;
-        padding-top: 8px;
     }
     .stat-value {
-        font-size: 2.2em;
+        font-size: 2.4em;
     }
     .log-section {
         order: 3;
