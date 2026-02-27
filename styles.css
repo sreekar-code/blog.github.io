@@ -239,11 +239,22 @@ blockquote {
 img {
     max-width: 100%;
     display: block;
-    margin: 0 auto;
-    max-height: 75vh;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.22), 0 6px 20px rgba(0,0,0,0.18);
+    margin: 1.4em auto;
+    max-height: 72vh;
+    border-radius: 2px;
+    /* cream photo border — like a printed photo pasted in a journal */
+    border: 7px solid #f9f3e2;
+    /* warm brown shadow instead of cold grey */
+    box-shadow:
+        2px 4px 14px rgba(55, 30, 5, 0.22),
+        0 1px 3px rgba(55, 30, 5, 0.12);
+    /* subtle sepia tint to age the photo and match the paper palette */
+    filter: sepia(0.22) saturate(0.9) contrast(0.96) brightness(1.02);
+    /* slight tilt — candid journal feel */
+    transform: rotate(-1.2deg);
+    transition: transform 0.25s ease;
 }
+img:hover { transform: rotate(0deg); }
 
 .like-button-container { margin-top: 20px; text-align: center; }
 .like-button {
@@ -305,13 +316,12 @@ img {
     h2 { font-size: 1.25em; }
     h3 { font-size: 1.1em; }
 
-    /* images — full content-area width, lighter shadow, no over-constrained height */
     img {
         width: 100%;
         max-height: none;
-        border-radius: 4px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-        margin: 0.6em 0;
+        border-width: 5px;
+        margin: 0.8em auto;
+        transform: rotate(-0.8deg);
     }
 
     .blogtitle { font-size: 1.7em; }
