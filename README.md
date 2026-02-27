@@ -8,6 +8,12 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 - Self-hosted on a Raspberry Pi, served via Nginx + Cloudflare Tunnel
 - GitHub as the middleman between local edits and the Pi
 
+## Design
+
+- **Font:** EB Garamond (Google Fonts) — warm, literary serif
+- **Theme:** Cool mist — `bg: #eaecf0`, `text: #20242c`, soft and light
+- Single stylesheet: `styles.css`, manually cache-busted with `?v=N`
+
 ## Pages
 
 | Page | Description |
