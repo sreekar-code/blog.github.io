@@ -26,7 +26,7 @@
     --cal-week-border: #d0c090;
     --cal-future-text: #cec090;
     --desk: #1a0e06;
-    --line-h: 42px;
+    --line-h: 45px;
 }
 
 /* ═══════════════════════════════════════
@@ -67,7 +67,7 @@ body {
     margin: 0 auto;
     padding: 4em 3.5em 6em 5em;
     line-height: 2;
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-family: 'Caveat', cursive;
     color: var(--fg);
     position: relative;
@@ -260,7 +260,7 @@ img {
    MOBILE
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-    :root { --line-h: 38px; }
+    :root { --line-h: 40px; }
 
     /* no dark desk on mobile — paper fills the screen */
     html {
@@ -270,7 +270,7 @@ img {
     }
 
     body {
-        font-size: 1.15em;
+        font-size: 1.25em;
         /* left 3em kept for margin line; right/top/bottom tightened */
         padding: 1.6em 1.2em 3em 3em;
         box-shadow: none;
