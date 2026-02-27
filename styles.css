@@ -2,8 +2,8 @@
 
 :root {
     --bg: #eaecf0;
-    --fg: #20242c;
-    --link: #20242c;
+    --fg: #13161d;
+    --link: #13161d;
     --blockquote-border: #c0c4cc;
     --like-btn-bg: #d8dae0;
     --dot-empty: #c8ccd4;
@@ -13,7 +13,7 @@
     --log-input-border: #c8ccd4;
     --log-input-color: #607080;
     --log-btn-bg: #d0d4dc;
-    --log-btn-color: #20242c;
+    --log-btn-color: #13161d;
     --log-list-color: #788098;
     --log-remove: #b8bcc8;
     --reset-best: #b8bcc8;
@@ -74,7 +74,7 @@ blockquote {
 
 /* mobile */
 @media (max-width: 768px) {
-    html { font-size: 1em; }
+    html { font-size: 1.1em; }
     .site-footer { text-align: center; }
 
     /* Let the date input stretch, button stays compact */
