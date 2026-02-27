@@ -239,22 +239,64 @@ blockquote {
 img {
     max-width: 100%;
     display: block;
-    margin: 1.4em auto;
+    margin: 0;
     max-height: 72vh;
     border-radius: 2px;
-    /* cream photo border — like a printed photo pasted in a journal */
     border: 7px solid #f9f3e2;
-    /* warm brown shadow instead of cold grey */
     box-shadow:
         2px 4px 14px rgba(55, 30, 5, 0.22),
         0 1px 3px rgba(55, 30, 5, 0.12);
-    /* subtle sepia tint to age the photo and match the paper palette */
     filter: sepia(0.22) saturate(0.9) contrast(0.96) brightness(1.02);
-    /* slight tilt — candid journal feel */
+}
+
+/*
+  SCRAPBOOK TAPE CORNERS
+  p:has(> img) targets the <p> wrapping standalone images.
+  The paragraph becomes the photo frame; ::before/::after are tape strips
+  placed at the top-left and bottom-right corners — just like a travel journal.
+  translate(-50%,-50%) / translate(50%,50%) centres each strip exactly on its
+  corner so the tape crosses it diagonally at 42°.
+*/
+p:has(> img) {
+    position: relative;
+    width: fit-content;
+    margin: 2em auto;
     transform: rotate(-1.2deg);
     transition: transform 0.25s ease;
 }
-img:hover { transform: rotate(0deg); }
+p:has(> img):hover { transform: rotate(0deg); }
+
+p:has(> img)::before,
+p:has(> img)::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 22px;
+    /* tape colour: warm amber, semi-transparent */
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0, transparent 5px,
+            rgba(255,255,255,0.11) 5px, rgba(255,255,255,0.11) 6px
+        ),
+        linear-gradient(
+            rgba(238,210,120,0.70),
+            rgba(230,200,108,0.70)
+        );
+    border-radius: 1px;
+    box-shadow: 1px 1px 5px rgba(80,48,8,0.22);
+    z-index: 2;
+}
+/* top-left corner */
+p:has(> img)::before {
+    top: 0; left: 0;
+    transform: translate(-50%, -50%) rotate(-42deg);
+}
+/* bottom-right corner */
+p:has(> img)::after {
+    bottom: 0; right: 0;
+    transform: translate(50%, 50%) rotate(-42deg);
+}
 
 .like-button-container { margin-top: 20px; text-align: center; }
 .like-button {
@@ -320,8 +362,11 @@ img:hover { transform: rotate(0deg); }
         width: 100%;
         max-height: none;
         border-width: 5px;
-        margin: 0.8em auto;
+    }
+
+    p:has(> img) {
         transform: rotate(-0.8deg);
+        margin: 1.2em auto;
     }
 
     .blogtitle { font-size: 1.7em; }
