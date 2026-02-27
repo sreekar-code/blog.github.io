@@ -223,6 +223,7 @@ blockquote {
 .cal-title {
     font-size: 0.85em;
     font-weight: bold;
+    color: #999;
 }
 .cal-nav-btn {
     background: none;
