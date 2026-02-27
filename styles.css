@@ -73,22 +73,9 @@ blockquote {
 
 
 /* mobile */
-@media (max-width: 600px) {
-    html {
-        font-size: 1.1em;
-        padding: 1.5em 1.25em;
-    }
-    .blogtitle { font-size: 1.7em; }
+@media (max-width: 768px) {
+    html { font-size: 1em; }
     .site-footer { text-align: center; }
-
-    /* bigger touch targets for calendar nav */
-    .cal-nav-btn {
-        padding: 8px 12px;
-        font-size: 1em;
-    }
-
-    /* let the streak number breathe */
-    .flow-stats { margin-top: 4px; }
 
     /* Let the date input stretch, button stays compact */
     .log-form {
