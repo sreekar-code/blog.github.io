@@ -60,8 +60,8 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
   ```html
   <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
   ```
-- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=10">`
-- Blog posts in `blog/` use `../styles.css?v=10`
+- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=11">`
+- Blog posts in `blog/` use `../styles.css?v=11`
 
 ### CSS
 
@@ -70,19 +70,11 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 - Mobile-first with desktop overrides via `@media (min-width: 600px)`
 - CSS custom properties used throughout for theming
 - No CSS frameworks (Tailwind, Bootstrap, etc.)
-- When updating `styles.css`, bump the version in all HTML files using this safe script (read then write separately — never combine into a one-liner):
-  ```python
-  import glob, re
-  files = glob.glob('**/*.html', recursive=True) + glob.glob('*.html')
-  files = list(set(files))
-  for p in files:
-      with open(p, 'r') as f:
-          content = f.read()
-      new_content = re.sub(r'styles\.css\?v=\d+', 'styles.css?vN', content)
-      if new_content != content:
-          with open(p, 'w') as f:
-              f.write(new_content)
+- When updating `styles.css`, bump the version in all HTML files with:
+  ```bash
+  find . -name "*.html" -exec sed -i '' 's/styles\.css?v=N/styles.css?v=N+1/g' {} +
   ```
+  Replace `N` and `N+1` with the current and next version numbers.
 
 ### JavaScript
 
@@ -108,7 +100,7 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Title</title>
-    <link rel="stylesheet" href="../styles.css?v=10">
+    <link rel="stylesheet" href="../styles.css?v=11">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
 </head>
 <body>
