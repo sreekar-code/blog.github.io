@@ -68,7 +68,7 @@ body {
     padding: 4em 3.5em 6em 5em;
     line-height: 2;
     font-size: 1.4em;
-    font-family: 'Caveat', cursive;
+    font-family: 'Caveat', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', cursive;
     color: var(--fg);
     position: relative;
     z-index: 1; /* sits above desk pseudo-elements */
@@ -207,7 +207,7 @@ body {
 
     /* Ink bleeds slightly into paper fibres when writing */
     text-shadow:
-        0 0 1.2px rgba(8,3,0,0.22),
+        0 0 0.3px rgba(8,3,0,0.18),
         0.4px 0.3px 0px rgba(8,3,0,0.07);
 
     /* Page elevated off the desk — deep layered shadow */
@@ -231,10 +231,13 @@ body {
 a { color: var(--link); }
 hr { margin: 8px 0 12px; border: none; border-top: 1.5px solid rgba(140, 100, 40, 0.38); }
 blockquote {
-    padding-left: 20px;
-    margin: 20px 0;
+    padding: 0.4em 1em 0.4em 1.4em;
+    margin: 1.2em 0.3em;
     font-style: italic;
-    border-left: 4px solid var(--blockquote-border);
+    border-left: 2.5px solid rgba(172, 48, 38, 0.5);
+    background: rgba(244, 236, 200, 0.5);
+    border-radius: 0 3px 3px 0;
+    color: rgba(26, 15, 4, 0.85);
 }
 img {
     max-width: 100%;
@@ -270,7 +273,7 @@ p:has(> img)::before,
 p:has(> img)::after {
     content: '';
     position: absolute;
-    width: 60px;
+    width: 85px;
     height: 22px;
     /* tape colour: warm amber, semi-transparent */
     background:
