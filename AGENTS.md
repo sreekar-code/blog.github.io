@@ -152,6 +152,11 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 - Rendered as sticky notes: warm aged-yellow background (`#ede8b4`), slight tilt, warm drop shadow
 - Use `<blockquote><p>...</p></blockquote>` markup as normal — CSS handles the look
 
+### Footer
+
+- The `<hr>` + `<footer class="site-footer">` block (Source + RSS links) appears **only on `index.html`**
+- Do not add it to Flow, Cooking, Blog, or individual post pages
+
 ### Links
 
 - Internal links: relative paths (e.g., `blog.html`, `../index.html`)

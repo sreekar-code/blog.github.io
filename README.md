@@ -41,6 +41,7 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 ## RSS
 
 Feed available at `/feed.xml`, auto-generated from `blog.html` on every push via GitHub Actions.
+The Source and RSS footer links appear only on the home page (`index.html`).
 
 ## Flow Tracker
 
