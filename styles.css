@@ -1,99 +1,314 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 
 :root {
-    --bg: #eaecf0;
-    --fg: #13161d;
-    --link: #13161d;
-    --blockquote-border: #c0c4cc;
-    --like-btn-bg: #d8dae0;
-    --dot-empty: #c8ccd4;
-    --dot-filled: #505870;
-    --dot-today: #788098;
-    --log-summary: #788098;
-    --log-input-border: #c8ccd4;
-    --log-input-color: #607080;
-    --log-btn-bg: #d0d4dc;
-    --log-btn-color: #13161d;
-    --log-list-color: #788098;
-    --log-remove: #b8bcc8;
-    --reset-best: #b8bcc8;
-    --sync-status: #788098;
-    --cal-cell: #dde0e8;
-    --cal-cell-text: #788098;
-    --cal-posted: #303848;
-    --cal-posted-text: #eaecf0;
-    --cal-today-border: #788098;
-    --cal-week-border: #c8ccd4;
-    --cal-future-text: #c0c4cc;
+    --bg: #f4ecce;
+    --fg: #1a0f04;
+    --link: #1a0f04;
+    --blockquote-border: #c8b070;
+    --like-btn-bg: #e4d8a8;
+    --dot-empty: #d4c898;
+    --dot-filled: #5c4418;
+    --dot-today: #8a6828;
+    --log-summary: #8a7040;
+    --log-input-border: #cec090;
+    --log-input-color: #7a6030;
+    --log-btn-bg: #ddd0a0;
+    --log-btn-color: #1a0f04;
+    --log-list-color: #8a7040;
+    --log-remove: #bca870;
+    --reset-best: #bca870;
+    --sync-status: #8a7040;
+    --cal-cell: #ecdfb0;
+    --cal-cell-text: #8a7040;
+    --cal-posted: #2c1a04;
+    --cal-posted-text: #f4ecce;
+    --cal-today-border: #8a6828;
+    --cal-week-border: #d0c090;
+    --cal-future-text: #cec090;
+    --desk: #1a0e06;
+    --line-h: 42px;
 }
 
+/* ═══════════════════════════════════════
+   DESK — fills the entire viewport
+═══════════════════════════════════════ */
 html {
-  max-width: 70ch;
-  padding: 2em 1em;
-  margin: auto;
-  line-height: 1.85;
-  font-size: 1.25em;
-  font-family: 'EB Garamond', Georgia, serif;
-  background-color: var(--bg);
-  color: var(--fg);
+    min-height: 100vh;
+    background: var(--desk);
+    background-image:
+        /* subtle wood grain — fine horizontal lines */
+        repeating-linear-gradient(
+            89deg,
+            rgba(255,220,150,0.018) 0px, rgba(255,220,150,0.018) 1px,
+            transparent 1px, transparent 160px
+        ),
+        repeating-linear-gradient(
+            91.5deg,
+            rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px,
+            transparent 1px, transparent 210px
+        ),
+        repeating-linear-gradient(
+            90.8deg,
+            rgba(80,40,8,0.03) 0px, rgba(80,40,8,0.03) 1px,
+            transparent 1px, transparent 95px
+        );
+    margin: 0;
+    padding: 56px 32px;
+    box-sizing: border-box;
+    position: relative;
 }
-.blogtitle {font-size: 2em; font-weight: bold;}
-.date {font-style: italic;}
-a {color: var(--link);}
-hr {margin-bottom: 10px;}
+
+
+/* ═══════════════════════════════════════
+   PAPER PAGE
+═══════════════════════════════════════ */
+body {
+    max-width: 70ch;
+    margin: 0 auto;
+    padding: 4em 3.5em 6em 5em;
+    line-height: 2;
+    font-size: 1.3em;
+    font-family: 'Caveat', cursive;
+    color: var(--fg);
+    position: relative;
+    z-index: 1; /* sits above desk pseudo-elements */
+
+    background-color: var(--bg);
+    background-image:
+        /* 1. Coarse paper grain — gives cellulose fibre texture */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.52' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E"),
+        /* 2. Fine grain — surface smoothness variation */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.06'/%3E%3C/svg%3E"),
+        /* 3. Binding shadow — left edge dark like a notebook spine */
+        linear-gradient(to right,
+            rgba(0,0,0,0.22) 0%,
+            rgba(0,0,0,0.1) 52px,
+            rgba(0,0,0,0.03) 100px,
+            transparent 140px
+        ),
+        /* 4. Top edge shadow */
+        linear-gradient(to bottom,
+            rgba(0,0,0,0.1) 0%,
+            rgba(0,0,0,0.03) 40px,
+            transparent 70px
+        ),
+        /* 5. Right edge — slight curl shadow */
+        linear-gradient(to left,
+            rgba(0,0,0,0.07) 0%,
+            transparent 40px
+        ),
+        /* 6. Bottom edge shadow */
+        linear-gradient(to top,
+            rgba(0,0,0,0.06) 0%,
+            transparent 40px
+        ),
+        /* 7. Central light source — lamp or window from above */
+        radial-gradient(ellipse 80% 60% at 48% 15%,
+            rgba(255,252,240,0.45) 0%,
+            transparent 100%
+        ),
+        /* 8. Top-left age darkening */
+        radial-gradient(ellipse 55% 45% at 0% 0%,
+            rgba(155,110,22,0.2) 0%,
+            transparent 100%
+        ),
+        /* 9. Bottom-right age darkening */
+        radial-gradient(ellipse 50% 42% at 100% 100%,
+            rgba(135,90,14,0.16) 0%,
+            transparent 100%
+        ),
+        /* 10. Age darkening — mid left (pages darken near binding) */
+        radial-gradient(ellipse 30% 50% at 0% 55%,
+            rgba(140,98,18,0.1) 0%,
+            transparent 100%
+        ),
+        /* 11–15. Foxing spots — small brownish age spots scattered on old paper */
+        radial-gradient(ellipse 14px 9px at 82% 31%,
+            rgba(138,88,22,0.14) 0%, transparent 100%
+        ),
+        radial-gradient(ellipse 9px 12px at 21% 68%,
+            rgba(148,92,18,0.12) 0%, transparent 100%
+        ),
+        radial-gradient(ellipse 11px 7px at 93% 54%,
+            rgba(128,82,16,0.11) 0%, transparent 100%
+        ),
+        radial-gradient(ellipse 7px 10px at 48% 84%,
+            rgba(142,90,20,0.13) 0%, transparent 100%
+        ),
+        radial-gradient(ellipse 16px 7px at 9% 22%,
+            rgba(132,85,18,0.09) 0%, transparent 100%
+        ),
+        /* 16. Spine crease — subtle vertical shadow near binding */
+        linear-gradient(to right,
+            transparent 74px,
+            rgba(0,0,0,0.045) 75px,
+            rgba(255,255,255,0.07) 76px,
+            transparent 78px
+        ),
+        /* 17. Horizontal page crease — like the page was once folded */
+        linear-gradient(to bottom,
+            transparent 46%,
+            rgba(0,0,0,0.025) 47%,
+            rgba(255,255,255,0.035) 48%,
+            transparent 49%
+        ),
+        /* 18. Red margin line */
+        linear-gradient(to right,
+            transparent 3.2em,
+            rgba(172,48,38,0.58) 3.2em,
+            rgba(172,48,38,0.58) calc(3.2em + 1.5px),
+            transparent calc(3.2em + 1.5px)
+        ),
+        /* 19. Ruled lines */
+        repeating-linear-gradient(
+            transparent,
+            transparent calc(var(--line-h) - 1px),
+            rgba(138,108,44,0.24) calc(var(--line-h) - 1px),
+            rgba(138,108,44,0.24) var(--line-h)
+        ),
+        /* 20. Base paper colour — slight warm variation, not uniform */
+        linear-gradient(148deg,
+            #f6eecf 0%,
+            #f4eccb 30%,
+            #f2e8c4 60%,
+            #f5eece 100%
+        );
+
+    background-size:
+        400px 400px,  /* 1 grain coarse */
+        200px 200px,  /* 2 grain fine */
+        100% 100%,    /* 3 binding shadow */
+        100% 100%,    /* 4 top edge */
+        100% 100%,    /* 5 right edge */
+        100% 100%,    /* 6 bottom edge */
+        100% 100%,    /* 7 light source */
+        100% 100%,    /* 8 top-left age */
+        100% 100%,    /* 9 bottom-right age */
+        100% 100%,    /* 10 mid-left age */
+        100% 100%,    /* 11 foxing 1 */
+        100% 100%,    /* 12 foxing 2 */
+        100% 100%,    /* 13 foxing 3 */
+        100% 100%,    /* 14 foxing 4 */
+        100% 100%,    /* 15 foxing 5 */
+        100% 100%,    /* 16 spine crease */
+        100% 100%,    /* 17 horizontal crease */
+        100% 100%,    /* 18 margin line */
+        100% var(--line-h), /* 19 ruled lines */
+        100% 100%;    /* 20 base colour */
+
+    background-repeat:
+        repeat, repeat,
+        no-repeat, no-repeat, no-repeat, no-repeat,
+        no-repeat, no-repeat, no-repeat, no-repeat,
+        no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+        no-repeat, no-repeat, no-repeat,
+        repeat,
+        no-repeat;
+
+    /* Ink bleeds slightly into paper fibres when writing */
+    text-shadow:
+        0 0 1.2px rgba(8,3,0,0.22),
+        0.4px 0.3px 0px rgba(8,3,0,0.07);
+
+    /* Page elevated off the desk — deep layered shadow */
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.18),
+        0 3px 8px rgba(0,0,0,0.28),
+        0 10px 28px rgba(0,0,0,0.32),
+        0 28px 72px rgba(0,0,0,0.26),
+        0 60px 120px rgba(0,0,0,0.16),
+        -7px 0 20px rgba(0,0,0,0.2),
+        7px 0 20px rgba(0,0,0,0.14),
+        inset 5px 0 16px rgba(0,0,0,0.07); /* inner binding shadow */
+}
+
+
+/* ═══════════════════════════════════════
+   STANDARD ELEMENTS
+═══════════════════════════════════════ */
+.blogtitle { font-size: 2em; font-weight: 700; }
+.date { font-style: italic; }
+a { color: var(--link); }
+hr { margin: 8px 0 12px; border: none; border-top: 1.5px solid rgba(140, 100, 40, 0.38); }
 blockquote {
-  padding-left: 20px;
-  margin: 20px 0;
-  font-style: italic;
-  border-left: 5px solid var(--blockquote-border);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    border-left: 4px solid var(--blockquote-border);
 }
- img {
-   max-width: 100%;
-   display: block;
-   margin: 0 auto;
-   max-height: 75vh;
-   border-radius: 12px;
-   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
- }
-
-.like-button-container {
-  margin-top: 20px;
-  text-align: center;
+img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    max-height: 75vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.22), 0 6px 20px rgba(0,0,0,0.18);
 }
 
+.like-button-container { margin-top: 20px; text-align: center; }
 .like-button {
-  background-color: var(--like-btn-bg);
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: var(--like-btn-bg);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-
-/* mobile */
+/* ═══════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════ */
 @media (max-width: 768px) {
-    html { font-size: 1.1em; }
+    :root { --line-h: 38px; }
+
+    /* no dark desk on mobile — paper fills the screen */
+    html {
+        padding: 0;
+        background: var(--bg);
+        background-image: none;
+    }
+
+    body {
+        font-size: 1.2em;
+        padding: 2em 1.4em 4em 3em;
+        box-shadow: none;
+        min-height: 100vh;
+        /* grain + margin line + ruled lines — keep the journal feel */
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.52' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)' opacity='0.06'/%3E%3C/svg%3E"),
+            linear-gradient(to right,
+                transparent 2.8em,
+                rgba(172,48,38,0.52) 2.8em,
+                rgba(172,48,38,0.52) calc(2.8em + 1.5px),
+                transparent calc(2.8em + 1.5px)
+            ),
+            repeating-linear-gradient(
+                transparent,
+                transparent calc(var(--line-h) - 1px),
+                rgba(138,108,44,0.22) calc(var(--line-h) - 1px),
+                rgba(138,108,44,0.22) var(--line-h)
+            );
+        background-size:
+            400px 400px,
+            200px 200px,
+            100% 100%,
+            100% var(--line-h);
+        background-repeat: repeat, repeat, no-repeat, repeat;
+    }
+
+    .blogtitle { font-size: 1.7em; }
     .site-footer { text-align: center; }
-
-    /* Let the date input stretch, button stays compact */
-    .log-form {
-        flex-wrap: wrap;
-    }
-    .log-form input {
-        flex: 1;
-        min-width: 0;
-    }
+    .log-form { flex-wrap: wrap; }
+    .log-form input { flex: 1; min-width: 0; }
 }
 
-/* Tracker */
-.tracker {
-    margin-top: 32px;
-    margin-bottom: 20px;
-}
+/* ═══════════════════════════════════════
+   FLOW TRACKER
+═══════════════════════════════════════ */
+.tracker { margin-top: 32px; margin-bottom: 20px; }
 
-/* Post timeline */
 .dot-grid {
     position: relative;
     height: 20px;
@@ -102,16 +317,13 @@ blockquote {
 .dot-grid::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
+    left: 0; right: 0; top: 50%;
     height: 1px;
     background: var(--dot-empty);
 }
 .dot {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--dot-empty);
     top: 50%;
@@ -121,12 +333,9 @@ blockquote {
 .dot-filled { background: var(--dot-filled); }
 .dot-today  { box-shadow: 0 0 0 1.5px var(--dot-today); background: var(--bg); }
 
-/* Log section */
-.log-section {
-    margin-top: 4px;
-}
+.log-section { margin-top: 4px; }
 .log-section > summary {
-    display: block; /* removes ::marker in Firefox + Chrome */
+    display: block;
     cursor: pointer;
     color: var(--log-summary);
     font-size: 0.8em;
@@ -135,11 +344,7 @@ blockquote {
 }
 .log-section > summary::-webkit-details-marker { display: none; }
 .log-section > summary::marker { content: none; }
-.log-form {
-    display: flex;
-    gap: 8px;
-    margin: 10px 0 6px;
-}
+.log-form { display: flex; gap: 8px; margin: 10px 0 6px; }
 .log-form input {
     padding: 5px 8px;
     border: 1px solid var(--log-input-border);
@@ -157,11 +362,7 @@ blockquote {
     cursor: pointer;
     font-size: 0.8em;
 }
-.log-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+.log-list { list-style: none; padding: 0; margin: 0; }
 .log-list li {
     display: flex;
     justify-content: space-between;
@@ -171,26 +372,18 @@ blockquote {
     list-style: none;
 }
 .log-remove {
-    background: none;
-    border: none;
+    background: none; border: none;
     color: var(--log-remove);
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
+    cursor: pointer; padding: 0; line-height: 1;
 }
 .reset-best {
-    background: none;
-    border: none;
+    background: none; border: none;
     color: var(--reset-best);
     font-size: 0.75em;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 14px;
-    display: block;
+    cursor: pointer; padding: 0;
+    margin-top: 14px; display: block;
 }
-.reset-best:hover {
-    color: var(--log-summary);
-}
+.reset-best:hover { color: var(--log-summary); }
 .sync-status {
     font-size: 0.75em;
     color: var(--sync-status);
@@ -198,39 +391,28 @@ blockquote {
     min-height: 1em;
 }
 
-/* Flow — weekly calendar */
-.flow-stats {
-    margin-bottom: 28px;
-}
+/* ═══════════════════════════════════════
+   FLOW CALENDAR
+═══════════════════════════════════════ */
+.flow-stats { margin-bottom: 28px; }
 .stat-label {
     font-size: 0.7em;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--cal-cell-text);
     margin-bottom: 8px;
 }
-.stat-value {
-    font-size: 1.6em;
-    font-weight: bold;
-    line-height: 1.2;
-}
-.flow-calendar {
-    margin-bottom: 28px;
-}
+.stat-value { font-size: 1.6em; font-weight: 700; line-height: 1.2; }
+.flow-calendar { margin-bottom: 28px; }
 .cal-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
 }
-.cal-title {
-    font-size: 0.85em;
-    font-weight: bold;
-    color: var(--log-summary);
-}
+.cal-title { font-size: 0.85em; font-weight: 700; color: var(--log-summary); }
 .cal-nav-btn {
-    background: none;
-    border: none;
+    background: none; border: none;
     cursor: pointer;
     color: var(--fg);
     font-size: 0.9em;
@@ -245,16 +427,10 @@ blockquote {
     gap: 4px;
     text-align: center;
 }
-.cal-days-header {
-    margin-bottom: 4px;
-    font-size: 0.65em;
-    color: var(--log-summary);
-}
+.cal-days-header { margin-bottom: 4px; font-size: 0.65em; color: var(--log-summary); }
 .cal-cell {
-    width: 28px;
-    height: 28px;
-    justify-self: center;
-    align-self: center;
+    width: 28px; height: 28px;
+    justify-self: center; align-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,34 +439,15 @@ blockquote {
     background: none;
     color: var(--cal-cell-text);
 }
-
 @media (min-width: 600px) {
-    .cal-cell {
-        width: 34px;
-        height: 34px;
-        font-size: 0.72em;
-    }
+    .cal-cell { width: 34px; height: 34px; font-size: 0.72em; }
 }
-.cal-blank {
-    background: none;
-}
-.cal-posted {
-    background: var(--cal-posted);
-    color: var(--cal-posted-text);
-    font-weight: bold;
-}
-.cal-today {
-    border: 1.5px solid var(--cal-today-border);
-    color: var(--fg);
-}
-.cal-this-week {
-    color: var(--cal-cell-text);
-}
-.cal-future {
-    color: var(--cal-future-text);
-}
+.cal-blank  { background: none; }
+.cal-posted { background: var(--cal-posted); color: var(--cal-posted-text); font-weight: 700; }
+.cal-today  { border: 1.5px solid var(--cal-today-border); color: var(--fg); }
+.cal-this-week { color: var(--cal-cell-text); }
+.cal-future    { color: var(--cal-future-text); }
 
-/* Desktop: calendar left, stats right, log a post below */
 @media (min-width: 600px) {
     .tracker {
         margin-top: 40px;
@@ -300,23 +457,8 @@ blockquote {
         align-items: flex-start;
         gap: 72px;
     }
-    .flow-calendar {
-        order: 1;
-        flex: 0 0 430px;
-        margin-bottom: 0;
-    }
-    .flow-stats {
-        order: 2;
-        flex: 1;
-        margin-bottom: 0;
-        margin-top: 110px;
-        text-align: center;
-    }
-    .stat-value {
-        font-size: 2.8em;
-    }
-    .log-section {
-        order: 3;
-        flex-basis: 100%;
-    }
+    .flow-calendar { order: 1; flex: 0 0 430px; margin-bottom: 0; }
+    .flow-stats    { order: 2; flex: 1; margin-bottom: 0; margin-top: 110px; text-align: center; }
+    .stat-value    { font-size: 2.8em; }
+    .log-section   { order: 3; flex-basis: 100%; }
 }
