@@ -60,13 +60,14 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
   ```html
   <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
   ```
-- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=11">`
-- Blog posts in `blog/` use `../styles.css?v=11`
+- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=22">`
+- Blog posts in `blog/` use `../styles.css?v=22`
 
 ### CSS
 
 - All styles in `styles.css` (shared across all pages)
-- **Dark theme only** — `:root` contains dark values, no light theme override
+- **Theme:** "Cool mist" — `bg: #eaecf0`, `text: #20242c`. Light, soft, airy. Not dark.
+- **Font:** EB Garamond loaded via `@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');` at top of `styles.css`
 - Mobile-first with desktop overrides via `@media (min-width: 600px)`
 - CSS custom properties used throughout for theming
 - No CSS frameworks (Tailwind, Bootstrap, etc.)
@@ -100,7 +101,7 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Title</title>
-    <link rel="stylesheet" href="../styles.css?v=11">
+    <link rel="stylesheet" href="../styles.css?v=22">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
 </head>
 <body>

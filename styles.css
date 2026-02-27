@@ -1,36 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
 :root {
-    --bg: #1a1a1a;
-    --fg: #d4d4d4;
-    --link: #d4d4d4;
-    --blockquote-border: #666;
-    --like-btn-bg: #2e2e2e;
-    --dot-empty: #2e2e2e;
-    --dot-filled: #aaa;
-    --dot-today: #777;
-    --log-summary: #555;
-    --log-input-border: #333;
-    --log-input-color: #888;
-    --log-btn-bg: #444;
-    --log-btn-color: #e0e0e0;
-    --log-list-color: #555;
-    --log-remove: #444;
-    --reset-best: #444;
-    --sync-status: #555;
-    --cal-cell: #2a2a2a;
-    --cal-cell-text: #888;
-    --cal-posted: #c8c8c8;
-    --cal-posted-text: #1a1a1a;
-    --cal-today-border: #666;
-    --cal-week-border: #3a3a3a;
-    --cal-future-text: #3a3a3a;
+    --bg: #eaecf0;
+    --fg: #20242c;
+    --link: #20242c;
+    --blockquote-border: #c0c4cc;
+    --like-btn-bg: #d8dae0;
+    --dot-empty: #c8ccd4;
+    --dot-filled: #505870;
+    --dot-today: #788098;
+    --log-summary: #788098;
+    --log-input-border: #c8ccd4;
+    --log-input-color: #607080;
+    --log-btn-bg: #d0d4dc;
+    --log-btn-color: #20242c;
+    --log-list-color: #788098;
+    --log-remove: #b8bcc8;
+    --reset-best: #b8bcc8;
+    --sync-status: #788098;
+    --cal-cell: #dde0e8;
+    --cal-cell-text: #788098;
+    --cal-posted: #303848;
+    --cal-posted-text: #eaecf0;
+    --cal-today-border: #788098;
+    --cal-week-border: #c8ccd4;
+    --cal-future-text: #c0c4cc;
 }
 
 html {
   max-width: 70ch;
   padding: 2em 1em;
   margin: auto;
-  line-height: 1.75;
+  line-height: 1.85;
   font-size: 1.25em;
+  font-family: 'EB Garamond', Georgia, serif;
   background-color: var(--bg);
   color: var(--fg);
 }
@@ -223,7 +226,7 @@ blockquote {
 .cal-title {
     font-size: 0.85em;
     font-weight: bold;
-    color: #999;
+    color: var(--log-summary);
 }
 .cal-nav-btn {
     background: none;
