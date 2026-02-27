@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
 :root {
     --bg: #f4ecce;
@@ -68,7 +68,7 @@ body {
     padding: 4em 3.5em 6em 5em;
     line-height: 2;
     font-size: 1.4em;
-    font-family: 'Caveat', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', cursive;
+    font-family: 'Kalam', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', cursive;
     color: var(--fg);
     position: relative;
     z-index: 1; /* sits above desk pseudo-elements */
