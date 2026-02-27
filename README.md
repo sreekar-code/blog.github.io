@@ -10,7 +10,7 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 
 ## Design
 
-- **Font:** Caveat (Google Fonts) — handwritten, weights 400 and 700
+- **Font:** Kalam (Google Fonts) — handwritten but legible, weights 300, 400, and 700
 - **Theme:** Journal paper — cream page (`#f4ecce`) on a dark wood desk (`#1a0e06`)
 - The `html` element is the desk; `body` is the paper page elevated above it
 - Paper has ruled lines, a red margin line, grain texture, and age-darkening effects

@@ -66,8 +66,8 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 
 - All styles in `styles.css` (shared across all pages)
 - **Theme:** Journal paper — cream page (`#f4ecce`, `--bg`) on a dark wood desk (`#1a0e06`, `--desk`)
-- **Font:** Caveat (Google Fonts, weights 400 + 700), loaded via `@import` at the top of `styles.css`
-  - `font-family: 'Caveat', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', cursive`
+- **Font:** Kalam (Google Fonts, weights 300, 400 + 700), loaded via `@import` at the top of `styles.css`
+  - `font-family: 'Kalam', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', cursive`
   - Emoji fonts are included in the stack so emojis render correctly without inheriting the text-shadow blur
 - **`html` = desk**, `body` = paper page. Do not mix them up.
 - **`--line-h`** must stay calibrated to `font-size-em × 16 × line-height(2)` so ruled lines align with text:
@@ -167,5 +167,5 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 
 - Umami analytics: `analytics.balla.dev`
 - GitHub API: used by `flow.html` to sync `dates.json`
-- Google Fonts: Caveat (weights 400, 700) — `@import` at top of `styles.css`
+- Google Fonts: Kalam (weights 300, 400, 700) — `@import` at top of `styles.css`
 - No npm packages, CDN links, or build tools
