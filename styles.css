@@ -235,12 +235,12 @@ blockquote {
     padding: 1em 1.5em 1.2em 1.4em;
     margin: 2em 0.4em;
     font-style: italic;
-    background: #fef3b0;
-    color: rgba(26, 15, 4, 0.88);
+    background: #ede8b4;
+    color: rgba(26, 15, 4, 0.85);
     transform: rotate(1.5deg);
     box-shadow:
-        2px 4px 14px rgba(0,0,0,0.20),
-        0 1px 4px rgba(0,0,0,0.12);
+        2px 4px 14px rgba(80, 55, 8, 0.18),
+        0 1px 4px rgba(80, 55, 8, 0.10);
     border-radius: 1px;
     transition: transform 0.25s ease;
 }
