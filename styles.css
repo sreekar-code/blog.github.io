@@ -231,14 +231,20 @@ body {
 a { color: var(--link); }
 hr { margin: 8px 0 12px; border: none; border-top: 1.5px solid rgba(140, 100, 40, 0.38); }
 blockquote {
-    padding: 0.4em 1em 0.4em 1.4em;
-    margin: 1.2em 0.3em;
+    position: relative;
+    padding: 1em 1.5em 1.2em 1.4em;
+    margin: 2em 0.4em;
     font-style: italic;
-    border-left: 2.5px solid rgba(172, 48, 38, 0.5);
-    background: rgba(244, 236, 200, 0.5);
-    border-radius: 0 3px 3px 0;
-    color: rgba(26, 15, 4, 0.85);
+    background: #fef3b0;
+    color: rgba(26, 15, 4, 0.88);
+    transform: rotate(1.5deg);
+    box-shadow:
+        2px 4px 14px rgba(0,0,0,0.20),
+        0 1px 4px rgba(0,0,0,0.12);
+    border-radius: 1px;
+    transition: transform 0.25s ease;
 }
+blockquote:hover { transform: rotate(0deg); }
 img {
     max-width: 100%;
     display: block;
