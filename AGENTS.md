@@ -59,8 +59,8 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
   ```html
   <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
   ```
-- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=36">`
-- Blog posts in `blog/` use `../styles.css?v=36`
+- CSS link must include cache-busting version: `<link rel="stylesheet" href="styles.css?v=37">`
+- Blog posts in `blog/` use `../styles.css?v=37`
 
 ### CSS
 
@@ -107,7 +107,7 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Title</title>
-    <link rel="stylesheet" href="../styles.css?v=36">
+    <link rel="stylesheet" href="../styles.css?v=37">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
 </head>
 <body>
