@@ -36,7 +36,7 @@
     <p><a href="index.html">Home</a> &nbsp;&nbsp; <a href="blog.html">Blog</a> &nbsp;&nbsp; Flow &nbsp;&nbsp; <a href="cooking.html">Cooking</a></p>
     <hr>
 
-    <p class="flow-desc">I try to publish one post a week. This tracks it.</p>
+    <p class="flow-desc">I try to publish one post a day. This tracks it.</p>
 
     <main class="tracker">
 
@@ -100,22 +100,16 @@
             if (!dates.length) return 0;
             const postSet = new Set(dates);
 
-            function weekHasPost(monday) {
-                for (let i = 0; i < 7; i++) {
-                    const d = new Date(monday);
-                    d.setDate(d.getDate() + i);
-                    if (postSet.has(toYMD(d))) return true;
-                }
-                return false;
-            }
+            const day = new Date();
+            day.setHours(0, 0, 0, 0);
 
-            let monday = getWeekMonday(new Date());
-            if (!weekHasPost(monday)) monday.setDate(monday.getDate() - 7);
+            // If today has no post yet, start counting from yesterday
+            if (!postSet.has(toYMD(day))) day.setDate(day.getDate() - 1);
 
             let streak = 0;
-            while (weekHasPost(monday)) {
+            while (postSet.has(toYMD(day))) {
                 streak++;
-                monday.setDate(monday.getDate() - 7);
+                day.setDate(day.getDate() - 1);
             }
             return streak;
         }
@@ -169,7 +163,7 @@
         function updateStats() {
             const streak = calcStreak();
             document.getElementById('streakCount').textContent =
-                streak === 1 ? '1 week' : `${streak} weeks`;
+                streak === 1 ? '1 day' : `${streak} days`;
         }
 
         function update() {
