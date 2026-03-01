@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flow — Sreekar Scribbles</title>
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
-    <link rel="stylesheet" href="styles.css?v=37">
+    <link rel="stylesheet" href="styles.css?v=38">
     <style>
         @keyframes flowShimmer {
             0%   { background-position: 200% center; }
@@ -56,6 +56,10 @@
             <div>
                 <div class="stat-label">Flow</div>
                 <div class="stat-value" id="streakCount">—</div>
+            </div>
+            <div>
+                <div class="stat-label">Best</div>
+                <div class="stat-value" id="bestStreakCount">—</div>
             </div>
         </div>
 
@@ -160,10 +164,25 @@
             }
         }
 
+        function calcBestStreak() {
+            if (!dates.length) return 0;
+            const sorted = [...new Set(dates)].sort();
+            let best = 1, current = 1;
+            for (let i = 1; i < sorted.length; i++) {
+                const diff = (new Date(sorted[i]) - new Date(sorted[i-1])) / 86400000;
+                if (diff === 1) { current++; if (current > best) best = current; }
+                else current = 1;
+            }
+            return best;
+        }
+
         function updateStats() {
             const streak = calcStreak();
             document.getElementById('streakCount').textContent =
                 streak === 1 ? '1 day' : `${streak} days`;
+            const best = calcBestStreak();
+            document.getElementById('bestStreakCount').textContent =
+                best === 1 ? '1 day' : `${best} days`;
         }
 
         function update() {
