@@ -5,4 +5,4 @@ requests==2.32.3
 beautifulsoup4==4.12.3
 python-dotenv==1.0.1
 # html parser backend for BeautifulSoup (pure Python, works on ARM)
-lxml==5.3.0
+lxml
