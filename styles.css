@@ -322,7 +322,7 @@ p:has(> img)::after {
    MOBILE
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-    :root { --line-h: 40px; }
+    :root { --line-h: 35px; }
 
     /* no dark desk on mobile — paper fills the screen */
     html {
@@ -332,7 +332,7 @@ p:has(> img)::after {
     }
 
     body {
-        font-size: 1.25em;
+        font-size: 1.1em;
         /* left 3em kept for margin line; right/top/bottom tightened */
         padding: 1.6em 1.2em 3em 3em;
         box-shadow: none;
@@ -364,7 +364,7 @@ p:has(> img)::after {
 
     /* headings */
     h1 { font-size: 1.2em; line-height: 1.5; margin-top: 2em; margin-bottom: 0.3em; }
-    h2 { font-size: 1.25em; }
+    h2 { font-size: 1.1em; }
     h3 { font-size: 1.1em; }
 
     /* blockquote — flat on mobile to prevent overflow, compact padding */
