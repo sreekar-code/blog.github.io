@@ -38,11 +38,7 @@
         .gh-cell.filled { background: var(--dot-filled); }
         .gh-cell.today { box-shadow: 0 0 0 1.5px var(--dot-today); }
         @media (max-width: 600px) {
-            .gh-weeks { gap: 1px; }
-            .gh-week { gap: 1px; }
-            .gh-cell { border-radius: 1px; }
-            .gh-cell.today { box-shadow: 0 0 0 1px var(--dot-today); }
-            .flow-desc { margin-bottom: 32px; }
+            #ghTracker { overflow-x: auto; padding-bottom: 4px; }
         }
     </style>
 </head>
@@ -126,7 +122,8 @@
                 weeks.push(week);
             }
 
-            const cols = `repeat(${weeks.length}, 1fr)`;
+            const cellSize = window.innerWidth < 600 ? '10px' : '1fr';
+            const cols = `repeat(${weeks.length}, ${cellSize})`;
 
             // Weeks grid
             const weeksRow = document.createElement('div');
