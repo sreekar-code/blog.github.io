@@ -5,7 +5,7 @@
     if (!nav) return;
 
     // Hide site title on blog post pages — the post's <h1> is enough
-    if (window.location.pathname.includes('/blog/')) {
+    if (document.querySelector('h1')) {
         const blogtitle = document.querySelector('.blogtitle');
         if (blogtitle) blogtitle.style.display = 'none';
     }
