@@ -7,61 +7,60 @@
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
     <link rel="stylesheet" href="styles.css?v=38">
     <style>
-        @keyframes flowShimmer {
-            0%   { background-position: 200% center; }
-            100% { background-position: -200% center; }
-        }
         .flow-desc {
             font-size: 0.8em;
             color: var(--fg);
-            margin-top: 20px;
-            margin-bottom: 24px;
+            margin-top: 40px;
+            margin-bottom: 48px;
         }
-        .stat-value {
-            background: linear-gradient(
-                90deg,
-                var(--fg) 20%,
-                var(--dot-today) 50%,
-                var(--fg) 80%
-            );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flowShimmer 6s linear infinite;
+        .tracker { display: block !important; margin-top: 12px !important; margin-bottom: 20px !important; gap: 0 !important; }
+        .year-nav {
+            display: grid;
+            grid-template-columns: 20px 1fr 20px;
+            align-items: center;
+            line-height: 1;
+            margin-bottom: 6px;
         }
-    </style></head>
+        #yearTitle { text-align: center; }
+        #nextYear { justify-self: end; }
+        .gh-weeks {
+            display: grid;
+            gap: 3px;
+            width: 100%;
+        }
+        .gh-week { display: flex; flex-direction: column; gap: 3px; }
+        .gh-cell {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 3px;
+            background: var(--dot-empty);
+        }
+        .gh-cell.filled { background: var(--dot-filled); }
+        .gh-cell.today { box-shadow: 0 0 0 1.5px var(--dot-today); }
+        @media (max-width: 600px) {
+            .gh-weeks { gap: 1px; }
+            .gh-week { gap: 1px; }
+            .gh-cell { border-radius: 1px; }
+            .gh-cell.today { box-shadow: 0 0 0 1px var(--dot-today); }
+            .flow-desc { margin-bottom: 32px; }
+        }
+    </style>
+</head>
 <body>
     <header class="blogtitle">Sreekar Scribbles</header>
     <p><a href="index.html">Home</a> &nbsp;&nbsp; <a href="blog.html">Blog</a> &nbsp;&nbsp; Flow &nbsp;&nbsp; <a href="cooking.html">Cooking</a></p>
     <hr>
 
-    <p class="flow-desc">I try to publish one post a day. This tracks it.</p>
+    <p class="flow-desc">I try to publish regularly. Each dot is a day. Dark ones are posts.</p>
 
     <main class="tracker">
 
-        <div class="flow-calendar">
-            <div class="cal-nav">
-                <button id="prevMonth" class="cal-nav-btn">←</button>
-                <span id="calTitle" class="cal-title"></span>
-                <button id="nextMonth" class="cal-nav-btn">→</button>
-            </div>
-            <div class="cal-days-header">
-                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-            </div>
-            <div class="cal-grid" id="calGrid"></div>
+        <div class="year-nav">
+            <button id="prevYear" class="cal-nav-btn">←</button>
+            <span id="yearTitle" class="cal-title"></span>
+            <button id="nextYear" class="cal-nav-btn">→</button>
         </div>
-
-        <div class="flow-stats">
-            <div>
-                <div class="stat-label">Flow</div>
-                <div class="stat-value" id="streakCount">—</div>
-            </div>
-            <div>
-                <div class="stat-label">Best</div>
-                <div class="stat-value" id="bestStreakCount">—</div>
-            </div>
-        </div>
+        <div class="gh-tracker" id="ghTracker"></div>
 
         <details class="log-section" id="logSection" style="display:none">
             <summary>Log post</summary>
@@ -81,127 +80,82 @@
         const DATES_KEY  = 'blogPostDates';
         const GITHUB_API = 'https://api.github.com/repos/sreekar-code/blog.github.io/contents/dates.json';
 
-        const MONTHS = ['January','February','March','April','May','June',
-                        'July','August','September','October','November','December'];
+        const SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
         let dates = [];
-        let viewYear  = new Date().getFullYear();
-        let viewMonth = new Date().getMonth();
+        let viewYear = new Date().getFullYear();
 
         function toYMD(d) {
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
-        function getWeekMonday(date) {
-            const d = new Date(date);
-            d.setHours(0, 0, 0, 0);
-            const dow = (d.getDay() + 6) % 7;
-            d.setDate(d.getDate() - dow);
-            return d;
-        }
+        function buildTracker() {
+            const container = document.getElementById('ghTracker');
+            container.innerHTML = '';
 
-        function calcStreak() {
-            if (!dates.length) return 0;
             const postSet = new Set(dates);
-
-            const day = new Date();
-            day.setHours(0, 0, 0, 0);
-
-            // If today has no post yet, start counting from yesterday
-            if (!postSet.has(toYMD(day))) day.setDate(day.getDate() - 1);
-
-            let streak = 0;
-            while (postSet.has(toYMD(day))) {
-                streak++;
-                day.setDate(day.getDate() - 1);
-            }
-            return streak;
-        }
-
-        function buildCalendar() {
-            document.getElementById('calTitle').textContent = `${MONTHS[viewMonth]} ${viewYear}`;
-
-            const grid = document.getElementById('calGrid');
-            grid.innerHTML = '';
-
-            const postSet   = new Set(dates);
-            const today     = new Date();
+            const today = new Date();
             today.setHours(0, 0, 0, 0);
-            const todayStr  = toYMD(today);
-            const weekStart = getWeekMonday(today);
-            const weekEnd   = new Date(weekStart);
-            weekEnd.setDate(weekStart.getDate() + 6);
+            const todayStr = toYMD(today);
+            const year = viewYear;
+            document.getElementById('yearTitle').textContent = year;
+            const nextBtn = document.getElementById('nextYear');
+            nextBtn.style.visibility = year >= today.getFullYear() ? 'hidden' : '';
 
-            const firstDay  = new Date(viewYear, viewMonth, 1);
-            const startDow  = (firstDay.getDay() + 6) % 7;
-            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+            // Start: Monday of the week containing Jan 1
+            const jan1 = new Date(year, 0, 1);
+            const startOffset = (jan1.getDay() + 6) % 7;
+            const startDate = new Date(jan1);
+            startDate.setDate(jan1.getDate() - startOffset);
 
-            for (let i = 0; i < startDow; i++) {
-                const blank = document.createElement('div');
-                blank.className = 'cal-cell cal-blank';
-                grid.appendChild(blank);
-            }
+            // End: Sunday of the week containing Dec 31
+            const dec31 = new Date(year, 11, 31);
+            const endOffset = (dec31.getDay() + 6) % 7;
+            const endDate = new Date(dec31);
+            endDate.setDate(dec31.getDate() + (6 - endOffset));
 
-            for (let d = 1; d <= daysInMonth; d++) {
-                const dateStr  = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                const cellDate = new Date(viewYear, viewMonth, d);
-
-                const cell = document.createElement('div');
-                cell.className = 'cal-cell';
-                cell.textContent = d;
-
-                if (postSet.has(dateStr)) {
-                    cell.classList.add('cal-posted');
-                } else if (dateStr === todayStr) {
-                    cell.classList.add('cal-today');
-                } else if (cellDate >= weekStart && cellDate <= weekEnd) {
-                    cell.classList.add('cal-this-week');
-                } else if (cellDate > today) {
-                    cell.classList.add('cal-future');
+            // Build array of weeks
+            const weeks = [];
+            const d = new Date(startDate);
+            while (d <= endDate) {
+                const week = [];
+                for (let i = 0; i < 7; i++) {
+                    week.push(new Date(d));
+                    d.setDate(d.getDate() + 1);
                 }
-
-                grid.appendChild(cell);
+                weeks.push(week);
             }
-        }
 
-        function calcBestStreak() {
-            if (!dates.length) return 0;
-            const sorted = [...new Set(dates)].sort();
-            let best = 1, current = 1;
-            for (let i = 1; i < sorted.length; i++) {
-                const diff = (new Date(sorted[i]) - new Date(sorted[i-1])) / 86400000;
-                if (diff === 1) { current++; if (current > best) best = current; }
-                else current = 1;
-            }
-            return best;
-        }
+            const cols = `repeat(${weeks.length}, 1fr)`;
 
-        function updateStats() {
-            const streak = calcStreak();
-            document.getElementById('streakCount').textContent =
-                streak === 1 ? '1 day' : `${streak} days`;
-            const best = calcBestStreak();
-            document.getElementById('bestStreakCount').textContent =
-                best === 1 ? '1 day' : `${best} days`;
+            // Weeks grid
+            const weeksRow = document.createElement('div');
+            weeksRow.className = 'gh-weeks';
+            weeksRow.style.gridTemplateColumns = cols;
+            weeks.forEach(week => {
+                const col = document.createElement('div');
+                col.className = 'gh-week';
+                week.forEach(day => {
+                    const cell = document.createElement('div');
+                    cell.className = 'gh-cell';
+                    const ds = toYMD(day);
+                    if (day.getFullYear() === year) {
+                        if (postSet.has(ds)) cell.classList.add('filled');
+                        if (ds === todayStr) cell.classList.add('today');
+                        if (day > today) cell.classList.add('future');
+                    }
+                    col.appendChild(cell);
+                });
+                weeksRow.appendChild(col);
+            });
+
+            container.appendChild(weeksRow);
         }
 
         function update() {
-            buildCalendar();
-            updateStats();
+            buildTracker();
             renderList();
         }
-
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            viewMonth--;
-            if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-            buildCalendar();
-        });
-
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            viewMonth++;
-            if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-            buildCalendar();
-        });
 
         // ── GitHub sync ──────────────────────────────────────────────────────
 
@@ -325,6 +279,16 @@
                 setSyncStatus('token cleared', false);
                 setTimeout(() => setSyncStatus('', false), 2000);
             }
+        });
+
+        document.getElementById('prevYear').addEventListener('click', () => {
+            viewYear--;
+            buildTracker();
+        });
+
+        document.getElementById('nextYear').addEventListener('click', () => {
+            viewYear++;
+            buildTracker();
         });
 
         document.getElementById('postDate').value = toYMD(new Date());
