@@ -4,10 +4,12 @@
     const nav = document.querySelector('.blogtitle + p');
     if (!nav) return;
 
-    // Hide site title on blog post pages — the post's <h1> is enough
+    // Hide site title and top divider on blog post pages — the post's <h1> is enough
     if (document.querySelector('h1')) {
         const blogtitle = document.querySelector('.blogtitle');
         if (blogtitle) blogtitle.style.display = 'none';
+        const pageHr = nav.nextElementSibling;
+        if (pageHr && pageHr.tagName === 'HR') pageHr.style.display = 'none';
     }
 
     nav.style.display = 'none';
