@@ -227,7 +227,7 @@ body {
    STANDARD ELEMENTS
 ═══════════════════════════════════════ */
 .blogtitle { font-size: 2em; font-weight: 700; }
-.date { font-style: italic; }
+.date { font-style: italic; font-size: 0.75em; }
 a { color: var(--link); }
 hr { margin: 8px 0 12px; border: none; border-top: 1.5px solid rgba(140, 100, 40, 0.38); }
 blockquote {
@@ -363,7 +363,7 @@ p:has(> img)::after {
     }
 
     /* headings */
-    h1 { font-size: 1.2em; line-height: 1.5; margin-bottom: 0.3em; }
+    h1 { font-size: 1.2em; line-height: 1.5; margin-top: 2em; margin-bottom: 0.3em; }
     h2 { font-size: 1.25em; }
     h3 { font-size: 1.1em; }
 
