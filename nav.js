@@ -4,6 +4,12 @@
     const nav = document.querySelector('.blogtitle + p');
     if (!nav) return;
 
+    // Hide site title on blog post pages — the post's <h1> is enough
+    if (window.location.pathname.includes('/blog/')) {
+        const blogtitle = document.querySelector('.blogtitle');
+        if (blogtitle) blogtitle.style.display = 'none';
+    }
+
     nav.style.display = 'none';
 
     // ── Extract nav items ────────────────────────────────────────────────────
