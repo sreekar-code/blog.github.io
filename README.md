@@ -14,7 +14,7 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 - **Theme:** Journal paper — cream page (`#f4ecce`) on a dark wood desk (`#1a0e06`)
 - The `html` element is the desk; `body` is the paper page elevated above it
 - Paper has ruled lines, a red margin line, grain texture, and age-darkening effects
-- Single stylesheet: `styles.css`, manually cache-busted with `?v=N` (current: v44)
+- Single stylesheet: `styles.css`, manually cache-busted with `?v=N` (current: v47)
 
 ### Scrapbook elements
 
