@@ -364,11 +364,10 @@ p:has(> img)::after {
 
     /* nav */
     .blogtitle + p {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0 0.6em;
-        font-size: 0.78em;
-        line-height: 2.2;
+        font-size: clamp(0.65em, 3.8vw, 0.85em);
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 2;
     }
 
     /* headings */
