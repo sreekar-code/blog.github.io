@@ -364,9 +364,8 @@ p:has(> img)::after {
 
     /* nav */
     .blogtitle + p {
-        font-size: clamp(0.65em, 3.8vw, 0.85em);
+        font-size: clamp(0.62em, 3.5vw, 0.8em);
         white-space: nowrap;
-        overflow: hidden;
         line-height: 2;
     }
 
