@@ -130,6 +130,9 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
     <h1>Post Title</h1>
     <section>
         <p class="date">DD MMM, YYYY</p>
+        <!-- Date rules: always use 3-letter abbreviated month (Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec).
+             Ordinal suffixes are optional: "7th Mar, 2026" and "7 Mar, 2026" are both valid.
+             Full month names (March, July, September…) will silently break RSS and Flow date parsing. -->
     </section>
     <section>
         <!-- Post content here -->
