@@ -27,6 +27,14 @@
         .bgm-btn:hover {
             box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.3);
         }
+        .bgm-btn {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .bgm-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(6px);
+        }
         @media (max-width: 768px) {
             .bgm-btn {
                 bottom: calc(1.5rem + env(safe-area-inset-bottom));
@@ -78,6 +86,16 @@
     const audio = document.getElementById('bgm');
     const btn   = document.getElementById('bgm-btn');
     let playing = false;
+    let lastScrollY = window.scrollY;
+    let hideTimer;
+
+    function hide() {
+        btn.classList.add('hidden');
+    }
+
+    function show() {
+        btn.classList.remove('hidden');
+    }
 
     btn.addEventListener('click', function () {
         if (!playing) {
@@ -85,13 +103,35 @@
             audio.play();
             playing = true;
             btn.textContent = '🔇 stop';
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hide, 2000);
         } else {
             audio.pause();
             audio.currentTime = 0;
             playing = false;
             btn.textContent = '🎵 music';
+            clearTimeout(hideTimer);
+            show();
         }
     });
+
+    window.addEventListener('scroll', function () {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY < lastScrollY) {
+            // scrolling up — reveal button
+            clearTimeout(hideTimer);
+            show();
+            if (playing) {
+                // hide again after 3s if still playing
+                hideTimer = setTimeout(hide, 3000);
+            }
+        } else if (playing) {
+            // scrolling down and music is on — hide
+            clearTimeout(hideTimer);
+            hide();
+        }
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 }());
 </script>
 </body>
