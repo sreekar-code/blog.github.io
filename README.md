@@ -21,6 +21,14 @@ Personal blog at [sreekarscribbles.com](https://sreekarscribbles.com).
 - Photos appear as tilted prints with a cream border, sepia tint, and tape strips at the top-left and bottom-right corners
 - Blockquotes render as sticky notes — warm aged-yellow, slight tilt, warm drop shadow
 
+### BGM (Background Music)
+
+- Selected posts can have an optional background music button (bottom-right, fixed)
+- Button is always visible; click to play, click again to stop
+- While music is playing: button auto-hides after 2s, reappears on scroll up, hides again on scroll down
+- Audio files live in `audio/` — use `yt-dlp` to download and `ffmpeg` to trim
+- Optimised for iOS Safari and Android Chrome (safe-area insets, no tap delay, no system button styling)
+
 ## Pages
 
 | Page | Description |

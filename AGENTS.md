@@ -40,6 +40,8 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
 │       └── generate-feed.yml   # Auto-generates feed.xml on push
 ├── blog/                   # Individual blog post HTML files
 │   └── *.html
+├── audio/                  # BGM audio files for blog posts
+│   └── *.mp3
 └── images/                 # Image assets
     ├── me.jpg
     ├── myway.jpg
@@ -101,6 +103,132 @@ Mac (edit) → GitHub (middleman) → Raspberry Pi (serves site)
   ```bash
   find . -name "*.html" -exec sed -i '' 's/nav\.js?v=N/nav.js?v=N+1/g' {} +
   ```
+
+### BGM — Background Music
+
+Selected blog posts can have an optional background music button. It is **not** added to every post — only when the music meaningfully enhances the reading experience.
+
+#### Behaviour
+- A pill-shaped `🎵 music` button sits fixed at the bottom-right corner, always visible on page load
+- Click → music plays, button shows `🔇 stop`; click again → music stops, button shows `🎵 music`
+- While music is playing: button auto-hides after 2s, reappears when the reader scrolls up, hides again on scroll down
+
+#### Downloading and trimming audio
+```bash
+# Download audio from YouTube (install once: brew install yt-dlp)
+yt-dlp -x --audio-format mp3 -o "audio/my-track.mp3" "https://youtu.be/VIDEO_ID"
+
+# Trim to a specific clip (no fades)
+ffmpeg -i audio/my-track.mp3 -ss 00:00:26 -to 00:01:00 audio/my-track-trimmed.mp3 -y
+```
+- Save trimmed files in `audio/` with lowercase hyphenated names (e.g. `jersey-theme.mp3`)
+- Commit the trimmed file alongside the post HTML
+
+#### Adding BGM to a post
+Add the following inside `<head>` (inline `<style>`) and before `</body>` (audio + button + script).
+
+**In `<head>`, before `</head>`:**
+```html
+<style>
+    .bgm-btn {
+        position: fixed;
+        bottom: 1.75rem;
+        right: 1.75rem;
+        background: var(--bg, #f4ecce);
+        border: 1px solid rgba(26, 14, 6, 0.18);
+        border-radius: 2rem;
+        padding: 0.4rem 0.9rem;
+        font-family: 'Kalam', cursive;
+        font-size: 0.82rem;
+        cursor: pointer;
+        color: var(--desk, #1a0e06);
+        box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.22);
+        z-index: 1000;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-appearance: none;
+        appearance: none;
+        touch-action: manipulation;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .bgm-btn:hover { box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.3); }
+    .bgm-btn.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(6px);
+    }
+    @media (max-width: 768px) {
+        .bgm-btn {
+            bottom: calc(1.25rem + env(safe-area-inset-bottom));
+            right: 1rem;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            min-height: 44px;
+            min-width: 44px;
+        }
+    }
+</style>
+```
+
+**Before `</body>`, after `nav.js`:**
+```html
+<audio id="bgm" src="../audio/your-track.mp3" loop preload="none"></audio>
+<button class="bgm-btn" id="bgm-btn" aria-label="Toggle background music">🎵 music</button>
+
+<script src="../nav.js?v=3"></script>
+<script>
+(function () {
+    const audio = document.getElementById('bgm');
+    const btn   = document.getElementById('bgm-btn');
+    let playing = false;
+    let lastScrollY = window.scrollY;
+    let hideTimer;
+
+    function hide() { btn.classList.add('hidden'); }
+    function show() { btn.classList.remove('hidden'); }
+
+    btn.addEventListener('click', function () {
+        if (!playing) {
+            audio.volume = 0.4;
+            audio.play().catch(function () {});
+            playing = true;
+            btn.textContent = '🔇 stop';
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hide, 2000);
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            playing = false;
+            btn.textContent = '🎵 music';
+            clearTimeout(hideTimer);
+            show();
+        }
+    });
+
+    window.addEventListener('scroll', function () {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY < lastScrollY) {
+            clearTimeout(hideTimer);
+            show();
+            if (playing) { hideTimer = setTimeout(hide, 3000); }
+        } else if (playing) {
+            clearTimeout(hideTimer);
+            hide();
+        }
+        lastScrollY = currentScrollY;
+    }, { passive: true });
+}());
+</script>
+```
+
+#### Mobile compatibility
+| Concern | iOS Safari | Android Chrome |
+|---|---|---|
+| Home indicator clearance | `env(safe-area-inset-bottom)` | supported (gesture nav) |
+| Tap highlight removal | `-webkit-tap-highlight-color` | supported |
+| System button styling reset | `-webkit-appearance: none` | `appearance: none` |
+| 300ms tap delay removal | `touch-action: manipulation` | supported |
+| Minimum tap target | 44px | 44px |
 
 ### Flow Page Notes
 
