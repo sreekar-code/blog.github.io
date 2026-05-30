@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alt Space — a beautiful painting</title>
     <link rel="stylesheet" href="../styles.css?v=47">
-    <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script></head>
+    <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
+    <style>
+        .bgm-btn {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            background: var(--bg, #f4ecce);
+            border: 1px solid rgba(26, 14, 6, 0.18);
+            border-radius: 2rem;
+            padding: 0.4rem 0.9rem;
+            font-family: 'Kalam', cursive;
+            font-size: 0.82rem;
+            cursor: pointer;
+            color: var(--desk, #1a0e06);
+            box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.22);
+            z-index: 1000;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bgm-btn:hover {
+            box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 768px) {
+            .bgm-btn {
+                bottom: calc(1.5rem + env(safe-area-inset-bottom));
+                right: 1.25rem;
+                font-size: 0.95rem;
+                padding: 0.6rem 1.1rem;
+                min-height: 44px;
+            }
+        }
+    </style>
+</head>
 <body>
 <main>
      <header class="blogtitle">Sreekar Scribbles</header>
@@ -36,6 +68,30 @@
 
 </section>
 </main>
+<audio id="bgm" src="../audio/bgm-trimmed.mp3" loop preload="none"></audio>
+<button class="bgm-btn" id="bgm-btn" aria-label="Toggle background music">🎵 music</button>
+
 <script src="../nav.js?v=3"></script>
+<script>
+(function () {
+    const audio = document.getElementById('bgm');
+    const btn   = document.getElementById('bgm-btn');
+    let playing = false;
+
+    btn.addEventListener('click', function () {
+        if (!playing) {
+            audio.volume = 0.4;
+            audio.play();
+            playing = true;
+            btn.textContent = '🔇 stop';
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            playing = false;
+            btn.textContent = '🎵 music';
+        }
+    });
+}());
+</script>
 </body>
 </html>
