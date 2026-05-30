@@ -23,12 +23,13 @@
             z-index: 1000;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .bgm-btn:hover {
             box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.3);
-        }
-        .bgm-btn {
-            transition: opacity 0.4s ease, transform 0.4s ease;
         }
         .bgm-btn.hidden {
             opacity: 0;
@@ -100,7 +101,7 @@
     btn.addEventListener('click', function () {
         if (!playing) {
             audio.volume = 0.4;
-            audio.play();
+            audio.play().catch(function () {});
             playing = true;
             btn.textContent = '🔇 stop';
             clearTimeout(hideTimer);
