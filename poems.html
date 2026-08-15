@@ -27,6 +27,8 @@
         .poem-outer {
             position: relative;
             width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
         }
 
         /* the crumpled paper background — filter applied here only */
@@ -43,7 +45,6 @@
             z-index: 1;
             padding: 1.6rem 2.4rem 1.8rem;
             color: #1c0d05;
-            text-align: center;
         }
 
         .poem-title {
@@ -60,7 +61,7 @@
 
         @media (max-width: 600px) {
             .poems-stack { gap: 4rem; }
-            .poem-outer { max-width: 100%; }
+            .poem-outer { max-width: 100%; margin: 0; }
             .poem-card { padding: 1.4rem 1.6rem 1.6rem; }
             .poem-wrapper:nth-child(odd)  { transform: rotate(-1.2deg); }
             .poem-wrapper:nth-child(even) { transform: rotate(0.8deg); }
