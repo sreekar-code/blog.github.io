@@ -6,6 +6,41 @@
     <title>Poems — Sreekar Scribbles</title>
     <link rel="stylesheet" href="styles.css?v=47">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
+    <style>
+        .poems-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3rem;
+            padding: 1rem 0 4rem;
+        }
+        .poem-card {
+            background: #f7f0d8;
+            color: #1a0e06;
+            padding: 2.2rem 2.6rem 2.6rem;
+            box-shadow: 3px 5px 20px rgba(0,0,0,0.35);
+            max-width: 380px;
+            width: 100%;
+            position: relative;
+        }
+        .poem-card:nth-child(odd)  { transform: rotate(-1.2deg); }
+        .poem-card:nth-child(even) { transform: rotate(0.9deg); }
+        .poem-card .poem-title {
+            font-size: 0.8em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.45;
+            margin-bottom: 1.2rem;
+        }
+        .poem-card .poem-body {
+            white-space: pre-line;
+            line-height: 2;
+            font-size: 1.05em;
+        }
+        @media (max-width: 600px) {
+            .poem-card { max-width: 100%; padding: 1.8rem 1.6rem 2rem; }
+        }
+    </style>
 </head>
 <body>
     <header class="blogtitle">Poems</header>
@@ -16,8 +51,21 @@
         <p>Sometimes, you don't need a lot of words.</p>
     </section>
     <section>
-    <ul>
-    </ul>
+    <div class="poems-stack">
+
+        <div class="poem-card">
+            <div class="poem-title">Both, somehow</div>
+            <div class="poem-body">Light's wave
+light's particle
+
+cat's alive
+cat's dead
+
+love's this
+love's that.</div>
+        </div>
+
+    </div>
     </section>
     </main>
 <script src="nav.js?v=3"></script>
