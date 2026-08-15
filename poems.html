@@ -16,20 +16,12 @@
         }
 
         .poem-card {
-            background:
-                /* crease going across */
-                linear-gradient(112deg, transparent 32%, rgba(255,255,255,0.6) 40%, transparent 48%),
-                /* bottom-right fold darkening */
-                linear-gradient(220deg, transparent 60%, rgba(0,0,0,0.06) 100%),
-                /* aged paper */
-                #f4e9c2;
+            background: #ffffff;
             color: #1c0d05;
-            padding: 3rem 2.6rem 3.4rem;
-            max-width: 360px;
+            padding: 1.6rem 2.4rem 1.8rem;
+            max-width: 440px;
             width: 100%;
-            /* warp the edges to look physically crumpled */
             filter: url(#crumple);
-            line-height: 2;
         }
 
         .poem-wrapper:nth-child(odd)  { transform: rotate(-2deg) translateX(8px); }
@@ -44,13 +36,13 @@
 
         .poem-body {
             white-space: pre-line;
-            line-height: 2.3;
-            font-size: 1.15em;
+            line-height: 2;
+            font-size: 0.95em;
         }
 
         @media (max-width: 600px) {
             .poems-stack { gap: 4rem; }
-            .poem-card { max-width: 100%; padding: 2.4rem 2rem 2.8rem; }
+            .poem-card { max-width: 100%; padding: 1.4rem 1.6rem 1.6rem; }
             .poem-wrapper:nth-child(odd)  { transform: rotate(-1.2deg); }
             .poem-wrapper:nth-child(even) { transform: rotate(0.8deg); }
         }
