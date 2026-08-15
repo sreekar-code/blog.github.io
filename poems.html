@@ -13,11 +13,15 @@
             align-items: flex-start;
             gap: 5rem;
             padding: 2rem 0 6rem;
+            width: 100%;
         }
 
         /* outer wrapper handles rotation */
-        .poem-wrapper:nth-child(odd)  { transform: rotate(-2deg) translateX(8px); }
-        .poem-wrapper:nth-child(even) { transform: rotate(1.5deg) translateX(-4px); }
+        .poem-wrapper {
+            width: 100%;
+        }
+        .poem-wrapper:nth-child(odd)  { transform: rotate(-2deg); }
+        .poem-wrapper:nth-child(even) { transform: rotate(1.5deg); }
 
         /* container holds both the paper layer and the text layer */
         .poem-outer {
