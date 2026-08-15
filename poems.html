@@ -16,12 +16,22 @@
         }
 
         .poem-card {
-            background: #fdfaf2;
+            background-color: #fdf8ec;
+            background-image:
+                /* red left margin line */
+                linear-gradient(to right, transparent 52px, #f4a0a0 52px, #f4a0a0 54px, transparent 54px),
+                /* ruled horizontal lines */
+                repeating-linear-gradient(
+                    transparent,
+                    transparent 39px,
+                    #b8d0f0 39px,
+                    #b8d0f0 40px
+                );
             color: #1a0e06;
-            padding: 2.4rem 2.8rem 2.8rem;
+            padding: 1.6rem 2rem 2.4rem 4.2rem;
             max-width: 340px;
             width: 100%;
-            box-shadow: 2px 4px 14px rgba(0,0,0,0.3);
+            box-shadow: 3px 5px 18px rgba(0,0,0,0.35);
         }
 
         .poem-wrapper:nth-child(odd)  { transform: rotate(-1deg); }
@@ -40,7 +50,7 @@
         }
 
         @media (max-width: 600px) {
-            .poem-card { max-width: 100%; padding: 2rem 1.8rem 2.4rem; }
+            .poem-card { max-width: 100%; padding: 1.6rem 1.4rem 2.4rem 4rem; }
             .poem-wrapper:nth-child(odd)  { transform: rotate(-0.5deg); }
             .poem-wrapper:nth-child(even) { transform: rotate(0.4deg); }
         }
