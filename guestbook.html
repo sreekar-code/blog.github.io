@@ -42,14 +42,17 @@
             font-family: 'Kalam', cursive;
             font-size: 0.85em;
             color: #1a0f04;
-            background: none;
-            border: none;
-            border-bottom: 1px solid rgba(140, 100, 40, 0.6);
-            padding: 0 0 0.1em;
+            background: #f4ecce;
+            border: 1.5px solid rgba(140, 100, 40, 0.6);
+            padding: 0.3em 1.4em;
             cursor: pointer;
-            opacity: 0.8;
+            border-radius: 2px;
+            box-shadow: 2px 3px 0px rgba(140, 100, 40, 0.35);
         }
-        .form-submit button:hover { opacity: 1; }
+        .form-submit button:hover {
+            box-shadow: 1px 1px 0px rgba(140, 100, 40, 0.35);
+            transform: translate(1px, 2px);
+        }
         .form-success {
             display: none;
             font-style: italic;
