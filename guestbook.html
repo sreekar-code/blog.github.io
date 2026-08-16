@@ -6,6 +6,54 @@
     <title>Guestbook — Sreekar Scribbles</title>
     <link rel="stylesheet" href="styles.css?v=47">
     <script async src="https://analytics.balla.dev/script.js" data-website-id="2d661ca0-e926-4c3c-8d8c-e948998a7ac8"></script>
+    <style>
+        .guestbook-form { margin-top: 1.5em; }
+        .form-field { margin-bottom: 1.4em; }
+        .form-field label {
+            display: block;
+            margin-bottom: 0.4em;
+            font-size: 0.85em;
+        }
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5em 0.7em;
+            font-family: 'Kalam', cursive;
+            font-size: 0.85em;
+            color: #1a0f04;
+            background: #ede8b4;
+            border: none;
+            border-bottom: 1.5px solid rgba(140, 100, 40, 0.5);
+            outline: none;
+            line-height: 1.6;
+        }
+        .form-field textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-bottom-color: rgba(140, 100, 40, 0.9);
+            background: #e8e2a8;
+        }
+        .form-submit {
+            margin-top: 0.5em;
+        }
+        .form-submit button {
+            font-family: 'Kalam', cursive;
+            font-size: 0.9em;
+            color: #1a0f04;
+            background: none;
+            border: 1.5px solid rgba(140, 100, 40, 0.6);
+            padding: 0.4em 1.4em;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        .form-submit button:hover {
+            background: rgba(140, 100, 40, 0.1);
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -17,8 +65,28 @@
         <p>Say hi. Leave a thought. I read every one.</p>
     </section>
     <section>
-        <iframe data-tally-src="https://tally.so/embed/A7Rg9l?alignLeft=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Drop a note"></iframe>
-        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+        <form class="guestbook-form" action="https://formspree.io/f/xzepajng" method="POST">
+            <input type="hidden" name="_next" value="https://sreekarscribbles.com/guestbook.html?submitted=true">
+            <div class="form-field">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-field">
+                <label for="blog">Your blog (if you have one)</label>
+                <input type="url" id="blog" name="blog">
+            </div>
+            <div class="form-field">
+                <label for="email">Email (so I can reach out, won't be public) *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field">
+                <label for="message">Something you'd like to say *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
     </section>
 </main>
 <script src="nav.js?v=3"></script>
