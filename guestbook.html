@@ -29,6 +29,12 @@
             outline: none;
             line-height: 1.6;
         }
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: #1a0f04;
+            opacity: 0.3;
+            font-style: italic;
+        }
         .form-field textarea {
             resize: none;
             min-height: 80px;
@@ -50,6 +56,12 @@
             opacity: 0.8;
         }
         .form-submit button:hover { opacity: 1; }
+        .form-success {
+            display: none;
+            font-style: italic;
+            opacity: 0.7;
+            margin-top: 1em;
+        }
     </style>
 </head>
 <body>
@@ -62,30 +74,48 @@
         <p>Say hi. Leave a thought. I read every one.</p>
     </section>
     <section>
-        <form class="guestbook-form" action="https://formspree.io/f/xzepajng" method="POST">
-            <input type="hidden" name="_next" value="https://sreekarscribbles.com/guestbook.html?submitted=true">
+        <form class="guestbook-form" id="guestbook-form">
             <div class="form-field">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="your name" required>
             </div>
             <div class="form-field">
                 <label for="blog">Your blog (if you have one)</label>
-                <input type="url" id="blog" name="blog">
+                <input type="url" id="blog" name="blog" placeholder="https://...">
             </div>
             <div class="form-field">
-                <label for="email">Email (so I can reach out, won't be public) *</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email (so I can reach out, won't be public)</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
             <div class="form-field">
-                <label for="message">Something you'd like to say *</label>
-                <textarea id="message" name="message" required></textarea>
+                <label for="message">Something you'd like to say</label>
+                <textarea id="message" name="message" placeholder="write anything..." required></textarea>
             </div>
             <div class="form-submit">
                 <button type="submit">Submit</button>
             </div>
         </form>
+        <p class="form-success" id="form-success">Got it. Thank you.</p>
     </section>
 </main>
 <script src="nav.js?v=3"></script>
+<script>
+    const form = document.getElementById('guestbook-form');
+    const success = document.getElementById('form-success');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        const res = await fetch('https://formspree.io/f/xzepajng', {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+        }
+    });
+</script>
 </body>
 </html>
