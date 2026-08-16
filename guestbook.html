@@ -29,13 +29,7 @@
             outline: none;
             line-height: 1.6;
         }
-        .form-field input::placeholder,
-        .form-field textarea::placeholder {
-            color: #1a0f04;
-            opacity: 0.3;
-            font-style: italic;
-        }
-        .form-field textarea {
+.form-field textarea {
             resize: none;
             min-height: 80px;
         }
@@ -77,19 +71,19 @@
         <form class="guestbook-form" id="guestbook-form">
             <div class="form-field">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="your name" required>
+                <input type="text" id="name" name="name" required>
             </div>
             <div class="form-field">
                 <label for="blog">Your blog (if you have one)</label>
-                <input type="url" id="blog" name="blog" placeholder="https://...">
+                <input type="url" id="blog" name="blog">
             </div>
             <div class="form-field">
                 <label for="email">Email (so I can reach out, won't be public)</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-field">
                 <label for="message">Something you'd like to say</label>
-                <textarea id="message" name="message" placeholder="write anything..." required></textarea>
+                <textarea id="message" name="message" required></textarea>
             </div>
             <div class="form-submit">
                 <button type="submit">Submit</button>
