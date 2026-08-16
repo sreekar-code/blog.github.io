@@ -5,7 +5,6 @@
     --fg: #1a0f04;
     --link: #1a0f04;
     --blockquote-border: #c8b070;
-    --like-btn-bg: #e4d8a8;
     --desk: #1a0e06;
     --line-h: 45px;
 }
@@ -286,17 +285,6 @@ p:has(> img)::before {
 p:has(> img)::after {
     bottom: 0; right: 0;
     transform: translate(50%, 50%) rotate(-42deg);
-}
-
-.like-button-container { margin-top: 20px; text-align: center; }
-.like-button {
-    background-color: var(--like-btn-bg);
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 /* ═══════════════════════════════════════
